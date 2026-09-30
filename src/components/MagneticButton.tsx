@@ -23,7 +23,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     <motion.button
       whileTap={FRAMER_TAP}
       onClick={onClick}
-      className={`relative inline-flex items-center cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8ff47] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e0c] ${className}`}
+      className={`relative inline-flex items-center cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e0c] ${className}`}
       {...props}
     >
       {children}

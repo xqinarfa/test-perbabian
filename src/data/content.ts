@@ -37,7 +37,7 @@ export const RESTAURANTS: Restaurant[] = [
     address: "Ruko Golf Island Blok L No. 28, Pantai Indah Kapuk, Jakarta Utara",
     gmaps_url: "https://maps.google.com/?q=Golf+Island+PIK+Jakarta+Utara",
     pork_status: ["pork_meat", "lard_used", "kitchen_100_non_halal"],
-    status_badges: ["Mengandung Daging Babi", "Menggunakan Minyak Babi", "100% Non-Halal Kitchen"],
+    status_badges: ["Mengandung Daging Babi", "Menggunakan Minyak Babi", "100% Dapur Babi"],
     category: "Chinese Food",
     signature_dishes: ["Samcan Crispy Panggang", "Chasiu Madu Karamel", "Nasi Campur Pontianak Komplit"],
     price_range: "$$",
@@ -57,7 +57,7 @@ export const RESTAURANTS: Restaurant[] = [
     address: "Jl. Danau Buyan No. 18, Sanur, Denpasar Selatan, Bali",
     gmaps_url: "https://maps.google.com/?q=Sanur+Denpasar+Bali",
     pork_status: ["pork_meat", "lard_used", "kitchen_100_non_halal"],
-    status_badges: ["Mengandung Daging Babi", "Menggunakan Minyak Babi", "100% Non-Halal Kitchen"],
+    status_badges: ["Mengandung Daging Babi", "Menggunakan Minyak Babi", "100% Dapur Babi"],
     category: "Babi Guling",
     signature_dishes: ["Nasi Babi Guling Spesial", "Kulit Babi Krispi Kaca", "Sate Lilit Babi Bumbu Genep", "Lawar Merah"],
     price_range: "$$",
@@ -97,7 +97,7 @@ export const RESTAURANTS: Restaurant[] = [
     address: "Jl. Raya Sanggingan No. 88X, Kedewatan, Ubud, Bali",
     gmaps_url: "https://maps.google.com/?q=Naughty+Nuris+Ubud+Bali",
     pork_status: ["pork_meat", "kitchen_100_non_halal"],
-    status_badges: ["Mengandung Daging Babi", "100% Non-Halal Kitchen"],
+    status_badges: ["Mengandung Daging Babi", "100% Dapur Babi"],
     category: "Western / Pork Ribs",
     signature_dishes: ["BBQ Glazed Pork Spare Ribs", "Charcoal Pork Chops", "Twisted Potato Wedges"],
     price_range: "$$$",
@@ -137,7 +137,7 @@ export const RESTAURANTS: Restaurant[] = [
     address: "Jl. Gardujati No. 53, Kebon Jeruk, Andir, Bandung, Jawa Barat",
     gmaps_url: "https://maps.google.com/?q=Gardujati+Bandung",
     pork_status: ["pork_meat", "lard_used", "kitchen_100_non_halal"],
-    status_badges: ["Mengandung Daging Babi", "Menggunakan Minyak Babi", "100% Non-Halal Kitchen"],
+    status_badges: ["Mengandung Daging Babi", "Menggunakan Minyak Babi", "100% Dapur Babi"],
     category: "Bakmi & Pangsit",
     signature_dishes: ["Lomie Kuah Kental Ebi Babi", "Dorokdok Kulit Babi Krispi", "Pangsit Kuah Rebus"],
     price_range: "$$",
@@ -165,17 +165,17 @@ export const CONTENT = {
       exploreCta: "Daftarkan Restoran",
     },
     hero: {
-      title: "Temukan Kuliner Non-Halal Terbaik di Kotamu",
+      title: "Temukan Kuliner Babi Terbaik di Kotamu",
       description:
         "Panduan lengkap restoran, kedai, dan street food dengan olahan daging serta minyak babi di seluruh Indonesia.",
       searchPlaceholder: "Cari nama restoran, menu (babi guling, samcan, bakmi), atau area...",
       cta: "Cari Restoran",
     },
-    ticker: "DIREKTORI KULINER NON-HALAL TERKURASI • TRANSPARANSI MINYAK BABI • 100% TERVERIFIKASI • KEDAI LEGENDARIS & STREET FOOD • JELAJAHI SE-INDONESIA • ",
+    ticker: "DIREKTORI KULINER BABI TERKURASI • TRANSPARANSI MINYAK BABI • 100% TERVERIFIKASI • KEDAI LEGENDARIS & STREET FOOD • JELAJAHI SE-INDONESIA • ",
     philosophy: {
       title: "Bukan Sekadar Makan. Ini Tentang Transparansi Bahan yang Pasti.",
       description:
-        "Di tengah sulitnya memastikan kejelasan bahan makanan dan status minyak babi, Perbabian hadir menyatukan direktori kuliner non-halal dalam satu tempat dengan transparansi penuh.",
+        "Di tengah sulitnya memastikan kejelasan bahan makanan dan status minyak babi, Perbabian hadir menyatukan direktori kuliner babi dalam satu tempat dengan transparansi penuh.",
       cta: "PELAJARI CARA KERJA →",
       cards: [
         {
@@ -191,7 +191,7 @@ export const CONTENT = {
           num: "02 / CAKUPAN NASIONAL",
           title: "Dari Kedai Legendaris hingga Street Food",
           description:
-            "Mendata rekomendasi kuliner non-halal di berbagai kota: Jakarta, Bali, Medan, Surabaya, Bandung, hingga pelosok nusantara.",
+            "Mendata rekomendasi kuliner babi di berbagai kota: Jakarta, Bali, Medan, Surabaya, Bandung, hingga pelosok nusantara.",
           bg: "bg-[#c3b8eb]",
           text: "text-[#11140f]",
           icon: "Sliders",
@@ -200,9 +200,9 @@ export const CONTENT = {
           num: "03 / PENCARIAN CEPAT",
           title: "Pilihan Tepat Tanpa Ragu Saat Bepergian",
           description:
-            "Filter presisi berbasis kota dan level non-halal agar kamu bisa menemukan kuliner favorit kapan pun tanpa kebingungan.",
-          bg: "bg-[#c8ff47]",
-          text: "text-[#11140f]",
+            "Filter presisi berbasis kota dan jenis olahan babi agar kamu bisa menemukan kuliner favorit kapan pun tanpa kebingungan.",
+          bg: "bg-[#BE132D]",
+          text: "text-white",
           icon: "CheckCircle2",
         },
       ],
@@ -237,8 +237,8 @@ export const CONTENT = {
           description:
             "Dari bakmi babi cincang hingga hidangan legendaris beraroma minyak babi yang gurih dan wangi semerbak.",
           cta: "Jelajahi Aneka Bakmi →",
-          bg: "bg-[#c8ff47]",
-          text: "text-[#11140f]",
+          bg: "bg-[#BE132D]",
+          text: "text-white",
           image: "/images/crunchy-salad.jpg",
           dishId: "bakmi-khek-selat-panjang",
         },
@@ -255,12 +255,12 @@ export const CONTENT = {
           dishId: "kwetiau-goreng-achai",
         },
       ],
-      tagline: "DIREKTORI NON-HALAL TERKURASI SE-INDONESIA.",
+      tagline: "DIREKTORI KULINER BABI TERKURASI SE-INDONESIA.",
     },
     gallery: {
-      title: "Direktori Kuliner Non-Halal Terpilih",
+      title: "Direktori Kuliner Babi Terpilih",
       description:
-        "Telusuri restoran, kedai, dan kuliner non-halal di kotamu dengan transparansi bahan, menu andalan, dan status terverifikasi.",
+        "Telusuri restoran, kedai, dan kuliner babi di kotamu dengan transparansi bahan, menu andalan, dan status terverifikasi.",
       cardCta: "Lihat Detail Restoran ↗",
       bottomTag: "DATA STATUS BAHAN DAN LOKASI TERVERIFIKASI TIM PERBABIAN.",
       bottomLink: "DAFTARKAN RESTORAN BARU ↗",
@@ -268,7 +268,7 @@ export const CONTENT = {
     steps: {
       title: "Bagaimana Perbabian Bekerja",
       subtitle:
-        "Empat langkah mudah menemukan kuliner non-halal terbaik dengan transparansi bahan yang teruji.",
+        "Empat langkah mudah menemukan kuliner babi terbaik dengan transparansi bahan yang teruji.",
       items: [
         {
           num: "01",
@@ -282,7 +282,7 @@ export const CONTENT = {
           num: "02",
           title: "Atur Filter Bahan",
           description:
-            "Filter berdasarkan jenis olahan (daging babi, minyak babi/lard, atau dapur 100% non-halal).",
+            "Filter berdasarkan jenis olahan (daging babi, minyak babi/lard, atau dapur 100% babi).",
           bg: "bg-[#f8f7f3]",
           text: "text-[#11140f]",
         },
@@ -299,8 +299,8 @@ export const CONTENT = {
           title: "Kunjungi Restoran",
           description:
             "Gunakan rute langsung Google Maps untuk segera berangkat dan bersantap tanpa ragu.",
-          bg: "bg-[#c8ff47]",
-          text: "text-[#11140f]",
+          bg: "bg-[#BE132D]",
+          text: "text-white",
         },
       ],
     },
@@ -311,7 +311,7 @@ export const CONTENT = {
           icon: "Target",
           title: "Transparansi Bahan 100%",
           description:
-            "Detail jelas apakah menggunakan daging babi langsung, minyak babi (lard), atau beroperasi sebagai 100% non-halal kitchen.",
+            "Detail jelas apakah menggunakan daging babi langsung, minyak babi (lard), atau beroperasi dengan dapur 100% babi.",
         },
         {
           icon: "Sliders",
@@ -323,7 +323,7 @@ export const CONTENT = {
           icon: "Sparkles",
           title: "Navigasi & Pencarian Cepat",
           description:
-            "Filter lokasi presisi dan integrasi Google Maps untuk memudahkan pencarian kuliner non-halal saat bepergian ke luar kota.",
+            "Filter lokasi presisi dan integrasi Google Maps untuk memudahkan pencarian kuliner babi saat bepergian ke luar kota.",
         },
       ],
       disclaimer:
@@ -336,18 +336,18 @@ export const CONTENT = {
       items: [
         {
           q: "Apa itu Perbabian?",
-          a: "Perbabian adalah platform direktori kuliner non-halal di Indonesia. Platform ini membantu pengguna menemukan restoran yang menyajikan olahan daging babi, minyak babi (lard), atau olahan non-halal lainnya secara akurat dan transparan berdasarkan filter wilayah.",
+          a: "Perbabian adalah platform direktori kuliner babi di Indonesia. Platform ini membantu pengguna menemukan restoran yang menyajikan olahan daging babi, minyak babi (lard), atau aneka olahan babi lainnya secara akurat dan transparan berdasarkan filter wilayah.",
         },
         {
           q: "Bagaimana transparansi status bahan makanan ditampilkan?",
-          a: "Setiap restoran di direktori memiliki label status yang jelas: 'Mengandung Daging Babi' untuk menu olahan daging babi langsung, 'Menggunakan Minyak Babi' untuk kedai yang menggunakan minyak lard, dan '100% Non-Halal Kitchen' untuk tempat makan dengan dapur khusus non-halal.",
+          a: "Setiap restoran di direktori memiliki label status yang jelas: 'Mengandung Daging Babi' untuk menu olahan daging babi langsung, 'Menggunakan Minyak Babi' untuk kedai yang menggunakan minyak lard, dan '100% Dapur Babi' untuk tempat makan dengan dapur khusus olahan babi.",
         },
         {
           q: "Apakah data restoran sudah diverifikasi?",
           a: "Ya. Data tempat makan pada direktori Perbabian diverifikasi langsung oleh tim dan kontributor komunitas untuk memastikan keakuratan menu andalan, jam operasional, dan lokasi tempat makan.",
         },
         {
-          q: "Bisakah mencari kuliner non-halal saat bepergian ke luar kota?",
+          q: "Bisakah mencari kuliner babi saat bepergian ke luar kota?",
           a: "Tentu saja. Perbabian dirancang dengan filter wilayah berbasis provinsi dan kota (DKI Jakarta, Bali, Medan, Surabaya, Bandung, dll) lengkap dengan tautan rute Google Maps untuk kemudahan navigasi langsung.",
         },
         {
@@ -357,7 +357,7 @@ export const CONTENT = {
       ],
     },
     cta: {
-      title: "Punya Rekomendasi Tempat Makan Non-Halal Favorit?",
+      title: "Punya Rekomendasi Tempat Makan Babi Favorit?",
       subtitle:
         "Bantu sesama pecinta kuliner menemukan hidden gem dan kedai legendaris di kotamu. Daftarkan restoran sekarang juga.",
       button: "Daftarkan Restoran Baru",
@@ -366,7 +366,7 @@ export const CONTENT = {
     footer: {
       brand: "PERBABIAN",
       description:
-        "Direktori kuliner non-halal terkurasi di Indonesia. Transparansi bahan, kejelasan minyak babi, dan pencarian tempat makan terdekat berdasarkan filter wilayah.",
+        "Direktori kuliner babi terkurasi di Indonesia. Transparansi bahan, kejelasan minyak babi, dan pencarian tempat makan terdekat berdasarkan filter wilayah.",
       navTitle: "NAVIGASI",
       links: [
         { label: "Direktori Restoran", href: "#cardapio" },
@@ -375,7 +375,7 @@ export const CONTENT = {
         { label: "Pertanyaan Umum", href: "#faq" },
       ],
       copyright: "© 2026 PERBABIAN INDONESIA.",
-      slogan: "DIREKTORI KULINER NON-HALAL TERKURASI & TRANSPARAN DI INDONESIA.",
+      slogan: "DIREKTORI KULINER BABI TERKURASI & TRANSPARAN DI INDONESIA.",
     },
   },
   en: {
@@ -390,24 +390,24 @@ export const CONTENT = {
       exploreCta: "Register Restaurant",
     },
     hero: {
-      title: "Discover the Best Non-Halal Culinary in Your City",
+      title: "Discover the Best Pork Culinary in Your City",
       description:
         "The comprehensive directory of restaurants, eateries, and street food with pork meat and lard preparations across Indonesia.",
       searchPlaceholder: "Search restaurant name, dishes (babi guling, samcan, bakmi), or area...",
       cta: "Find Restaurants",
     },
-    ticker: "CURATED NON-HALAL DIRECTORY • LARD TRANSPARENCY • 100% VERIFIED • LEGENDARY EATERIES & STREET FOOD • ACROSS INDONESIA • ",
+    ticker: "CURATED PORK CULINARY DIRECTORY • LARD TRANSPARENCY • 100% VERIFIED • LEGENDARY EATERIES & STREET FOOD • ACROSS INDONESIA • ",
     philosophy: {
       title: "More Than Just Dining. It's About Ingredient Transparency.",
       description:
-        "In a landscape where ingredient clarity and lard usage are often uncertain, Perbabian brings together a verified non-halal directory in one place with full transparency.",
+        "In a landscape where ingredient clarity and lard usage are often uncertain, Perbabian brings together a verified pork culinary directory in one place with full transparency.",
       cta: "SEE HOW IT WORKS →",
       cards: [
         {
           num: "01 / TRANSPARENCY",
           title: "Clear Ingredient & Lard Status",
           description:
-            "Transparent information on whether the restaurant uses pork meat directly, lard oil for cooking, or maintains dedicated non-halal cookware.",
+            "Transparent information on whether the restaurant uses pork meat directly, lard oil for cooking, or maintains dedicated pork kitchenware.",
           bg: "bg-[#df6b51]",
           text: "text-white",
           icon: "Clock",
@@ -416,7 +416,7 @@ export const CONTENT = {
           num: "02 / NATIONWIDE REACH",
           title: "From Legendary Eateries to Street Food",
           description:
-            "Curating non-halal culinary gems across cities: Jakarta, Bali, Medan, Surabaya, Bandung, and beyond.",
+            "Curating pork culinary gems across cities: Jakarta, Bali, Medan, Surabaya, Bandung, and beyond.",
           bg: "bg-[#c3b8eb]",
           text: "text-[#11140f]",
           icon: "Sliders",
@@ -425,9 +425,9 @@ export const CONTENT = {
           num: "03 / FAST SEARCH",
           title: "Confident Choices When Traveling",
           description:
-            "Precise filters by city and non-halal status so you can find your favorite comfort food anytime without second-guessing.",
-          bg: "bg-[#c8ff47]",
-          text: "text-[#11140f]",
+            "Precise filters by city and pork preparation type so you can find your favorite comfort food anytime without second-guessing.",
+          bg: "bg-[#BE132D]",
+          text: "text-white",
           icon: "CheckCircle2",
         },
       ],
@@ -462,8 +462,8 @@ export const CONTENT = {
           description:
             "From minced pork curly noodles to classic dishes prepared with fragrant lard oil.",
           cta: "Explore Noodle Dishes →",
-          bg: "bg-[#c8ff47]",
-          text: "text-[#11140f]",
+          bg: "bg-[#BE132D]",
+          text: "text-white",
           image: "/images/crunchy-salad.jpg",
           dishId: "bakmi-khek-selat-panjang",
         },
@@ -480,12 +480,12 @@ export const CONTENT = {
           dishId: "kwetiau-goreng-achai",
         },
       ],
-      tagline: "CURATED NON-HALAL DIRECTORY ACROSS INDONESIA.",
+      tagline: "CURATED PORK DIRECTORY ACROSS INDONESIA.",
     },
     gallery: {
-      title: "Curated Non-Halal Culinary Directory",
+      title: "Curated Pork Culinary Directory",
       description:
-        "Browse restaurants, eateries, and non-halal spots in your city with ingredient transparency, signature dishes, and verified status.",
+        "Browse restaurants, eateries, and pork culinary spots in your city with ingredient transparency, signature dishes, and verified status.",
       cardCta: "View Restaurant Details ↗",
       bottomTag: "VERIFIED INGREDIENT & LOCATION DATA BY PERBABIAN TEAM.",
       bottomLink: "SUBMIT NEW RESTAURANT ↗",
@@ -493,7 +493,7 @@ export const CONTENT = {
     steps: {
       title: "How Perbabian Works",
       subtitle:
-        "Four simple steps to discover the best non-halal food with trusted ingredient transparency.",
+        "Four simple steps to discover the best pork culinary with trusted ingredient transparency.",
       items: [
         {
           num: "01",
@@ -507,7 +507,7 @@ export const CONTENT = {
           num: "02",
           title: "Filter by Ingredients",
           description:
-            "Filter by preparation type: pork meat, lard oil, or 100% non-halal kitchens.",
+            "Filter by preparation type: pork meat, lard oil, or 100% pork kitchens.",
           bg: "bg-[#f8f7f3]",
           text: "text-[#11140f]",
         },
@@ -524,19 +524,19 @@ export const CONTENT = {
           title: "Visit the Restaurant",
           description:
             "Use direct Google Maps integration to navigate with total confidence and ease.",
-          bg: "bg-[#c8ff47]",
-          text: "text-[#11140f]",
+          bg: "bg-[#BE132D]",
+          text: "text-white",
         },
       ],
     },
     experience: {
-      title: "The Trusted Non-Halal Culinary Guide",
+      title: "The Trusted Pork Culinary Guide",
       cards: [
         {
           icon: "Target",
           title: "100% Ingredient Transparency",
           description:
-            "Clear details on whether food includes pork meat, lard cooking oil, or dedicated non-halal kitchens.",
+            "Clear details on whether food includes pork meat, lard cooking oil, or dedicated pork kitchens.",
         },
         {
           icon: "Sliders",
@@ -561,11 +561,11 @@ export const CONTENT = {
       items: [
         {
           q: "What is Perbabian?",
-          a: "Perbabian is Indonesia's non-halal culinary directory platform that helps diners find restaurants serving pork meat, lard, or other non-halal dishes accurately and transparently based on regional filters.",
+          a: "Perbabian is Indonesia's pork culinary directory platform that helps diners find restaurants serving pork meat, lard, or other pork dishes accurately and transparently based on regional filters.",
         },
         {
           q: "How is ingredient and lard transparency displayed?",
-          a: "Each restaurant is badged with clear status labels: 'Mengandung Daging Babi' (contains pork meat), 'Menggunakan Minyak Babi' (uses lard oil), and '100% Non-Halal Kitchen' for dedicated non-halal kitchens.",
+          a: "Each restaurant is badged with clear status labels: 'Mengandung Daging Babi' (contains pork meat), 'Menggunakan Minyak Babi' (uses lard oil), and '100% Dapur Babi' for dedicated pork kitchens.",
         },
         {
           q: "Is the restaurant data verified?",
@@ -582,7 +582,7 @@ export const CONTENT = {
       ],
     },
     cta: {
-      title: "Have a Favorite Non-Halal Food Spot?",
+      title: "Have a Favorite Pork Food Spot?",
       subtitle:
         "Help the food lover community discover hidden gems and legendary eateries in your city. Register a restaurant today.",
       button: "Submit New Restaurant",
@@ -591,7 +591,7 @@ export const CONTENT = {
     footer: {
       brand: "PERBABIAN",
       description:
-        "Curated non-halal culinary directory in Indonesia. Transparent ingredient information, lard status, and regional discovery.",
+        "Curated pork culinary directory in Indonesia. Transparent ingredient information, lard status, and regional discovery.",
       navTitle: "NAVIGATION",
       links: [
         { label: "Restaurant Directory", href: "#cardapio" },
@@ -600,7 +600,7 @@ export const CONTENT = {
         { label: "FAQ", href: "#faq" },
       ],
       copyright: "© 2026 PERBABIAN INDONESIA.",
-      slogan: "CURATED & TRANSPARENT NON-HALAL CULINARY DIRECTORY IN INDONESIA.",
+      slogan: "CURATED & TRANSPARENT PORK CULINARY DIRECTORY IN INDONESIA.",
     },
   },
 };

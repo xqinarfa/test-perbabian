@@ -109,12 +109,12 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
                 sizes="(max-width: 768px) 100vw, 640px"
               />
               <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-bold tracking-wider uppercase text-[#c8ff47] border border-[#c8ff47]/30">
+                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-bold tracking-wider uppercase text-[#BE132D] border border-[#BE132D]/30">
                   {dish.category}
                 </span>
                 {dish.verified_by_team && (
                   <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-bold tracking-wider uppercase text-white/90 border border-white/20 flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#c8ff47]" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#BE132D]" />
                     <span>Terverifikasi Tim</span>
                   </span>
                 )}
@@ -127,27 +127,15 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
                 <h3 className="text-2xl sm:text-3xl font-serif font-medium tracking-tight">
                   {dish.name}
                 </h3>
-                <span className="text-sm font-mono font-bold text-[#c8ff47] px-3 py-1 bg-white/5 border border-white/10 rounded-full">
+                <span className="text-sm font-mono font-bold text-[#BE132D] px-3 py-1 bg-white/5 border border-white/10 rounded-full">
                   {dish.price_range}
                 </span>
               </div>
 
               {/* Location Tag */}
               <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
-                <MapPin className="w-4 h-4 text-[#c8ff47] shrink-0" />
+                <MapPin className="w-4 h-4 text-[#BE132D] shrink-0" />
                 <span>{dish.address}</span>
-              </div>
-
-              {/* Status Badges from PRD */}
-              <div className="flex flex-wrap gap-2 pt-1">
-                {dish.status_badges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="px-3 py-1 rounded-full bg-[#c8ff47]/10 border border-[#c8ff47]/25 text-[#c8ff47] text-[11px] font-semibold tracking-wider uppercase"
-                  >
-                    {badge}
-                  </span>
-                ))}
               </div>
 
               <p className="text-white/80 text-sm sm:text-base leading-relaxed pt-1">
@@ -158,16 +146,16 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
             {/* Opening Hours & Live Status */}
             <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-between gap-4">
               <div className="flex items-center gap-2.5 text-xs sm:text-sm">
-                <Clock className="w-4 h-4 text-[#c8ff47] shrink-0" />
+                <Clock className="w-4 h-4 text-white shrink-0" />
                 <span>{dish.opening_hours}</span>
               </div>
               <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider shrink-0">
                 <span
                   className={`w-2.5 h-2.5 rounded-full ${
-                    dish.is_open_now ? "bg-[#c8ff47] shadow-[0_0_8px_#c8ff47]" : "bg-red-500"
+                    dish.is_open_now ? "bg-emerald-400 shadow-[0_0_8px_#10b981]" : "bg-red-500"
                   }`}
                 />
-                <span className={dish.is_open_now ? "text-[#c8ff47]" : "text-white/60"}>
+                <span className={dish.is_open_now ? "text-emerald-400" : "text-white/60"}>
                   {dish.is_open_now ? "Buka Sekarang" : "Tutup"}
                 </span>
               </div>
@@ -175,8 +163,8 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
 
             {/* Signature Dishes */}
             <div className="space-y-3 pt-1 border-t border-white/10">
-              <h4 className="text-xs font-bold tracking-[0.16em] uppercase text-[#c8ff47] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#c8ff47]" />
+              <h4 className="text-xs font-bold tracking-[0.16em] uppercase text-white flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-white" />
                 <span>{lang === "en" ? "Signature Dishes" : "Menu Andalan"}</span>
               </h4>
 
@@ -186,8 +174,8 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
                     key={item}
                     className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-white/90"
                   >
-                    <div className="w-4 h-4 rounded-full bg-[#c8ff47]/20 flex items-center justify-center shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#c8ff47]" />
+                    <div className="w-4 h-4 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
                     </div>
                     <span className="font-medium">{item}</span>
                   </div>
@@ -201,7 +189,7 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
                 href={dish.gmaps_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-[#c8ff47] hover:bg-[#d8ff5e] text-black font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-[#c8ff47]/20 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-[#BE132D] hover:bg-[#d81a37] text-white font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-[#BE132D]/25 cursor-pointer"
               >
                 <span>Buka Rute di Google Maps</span>
                 <ExternalLink className="w-4 h-4" />

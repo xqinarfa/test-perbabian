@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Language, CONTENT } from "@/data/content";
 
 interface FooterProps {
@@ -16,9 +17,15 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
           {/* Brand Info */}
           <div className="md:col-span-7 space-y-4">
-            <h3 className="text-base sm:text-lg font-bold tracking-[0.16em] uppercase">
-              {t.brand}
-            </h3>
+            <div className="relative h-11 sm:h-12 w-auto aspect-[927/220]">
+              <Image
+                src="/images/logo-clean-dark.png"
+                alt="Perbabian"
+                width={927}
+                height={220}
+                className="h-full w-auto object-contain"
+              />
+            </div>
             <p className="text-sm text-white/60 leading-relaxed font-sans max-w-sm">
               {t.description}
             </p>
@@ -26,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
 
           {/* Navigation links */}
           <div className="md:col-span-5 space-y-4 md:text-right">
-            <h4 className="text-xs font-bold tracking-[0.2em] text-[#bef227] uppercase">
+            <h4 className="text-xs font-bold tracking-[0.2em] text-[#BE132D] uppercase">
               {t.navTitle}
             </h4>
             <ul className="space-y-2.5 text-sm text-white/80">

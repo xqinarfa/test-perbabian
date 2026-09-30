@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLenis } from "lenis/react";
@@ -99,9 +100,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Brand Logo */}
           <a
             href="#inicio"
-            className="text-white text-xs sm:text-sm font-bold tracking-[0.14em] sm:tracking-[0.16em] uppercase hover:text-[#bef227] transition-colors whitespace-nowrap focus:outline-none focus-visible:text-[#bef227]"
+            className="flex items-center group focus:outline-none shrink-0"
+            aria-label="Perbabian"
           >
-            {t.brand}
+            <div className="relative h-9 sm:h-10 md:h-11 w-auto aspect-[927/220] shrink-0 group-hover:scale-[1.02] transition-transform duration-200">
+              <Image
+                src="/images/logo-clean-dark.png"
+                alt="Perbabian"
+                width={927}
+                height={220}
+                priority
+                className="h-full w-auto object-contain"
+              />
+            </div>
           </a>
 
           {/* Desktop Nav Links with Active Pill Indicator */}
@@ -179,18 +190,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Desktop Explore CTA Button */}
             <MagneticButton
               onClick={onExploreClick}
-              className="hidden sm:inline-flex items-center gap-2.5 pl-4 pr-1.5 py-1.5 bg-[#c8ff47] hover:bg-[#d8ff5e] text-black font-semibold text-xs md:text-[13px] rounded-full transition-colors group shadow-lg shadow-[#c8ff47]/20 whitespace-nowrap cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-2.5 pl-4 pr-1.5 py-1.5 bg-[#BE132D] hover:bg-[#d81a37] text-white font-semibold text-xs md:text-[13px] rounded-full transition-colors group shadow-lg shadow-[#BE132D]/25 whitespace-nowrap cursor-pointer"
             >
               <span>{t.exploreCta}</span>
-              <span className="w-7 h-7 rounded-full bg-black flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-200">
-                <ArrowRight className="w-3.5 h-3.5 text-[#c8ff47] group-hover:translate-x-0.5 transition-transform" />
+              <span className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[#BE132D] group-hover:scale-105 transition-transform duration-200">
+                <ArrowRight className="w-3.5 h-3.5 text-[#BE132D] group-hover:translate-x-0.5 transition-transform" />
               </span>
             </MagneticButton>
 
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-white/80 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#bef227] rounded-full cursor-pointer"
+              className="lg:hidden p-2 text-white/80 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D] rounded-full cursor-pointer"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -208,7 +219,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             className="fixed inset-0 z-40 bg-black/90 flex flex-col justify-center px-8 py-12 lg:hidden"
           >
-            <div className="flex flex-col gap-6 text-center">
+            <div className="flex flex-col gap-6 text-center items-center">
+              <div className="relative h-14 sm:h-16 w-auto aspect-[927/220] mb-2">
+                <Image
+                  src="/images/logo-clean-dark.png"
+                  alt="Perbabian"
+                  width={927}
+                  height={220}
+                  className="h-full w-auto object-contain"
+                />
+              </div>
               {t.links.map((link, idx) => (
                 <motion.a
                   key={link.href}
@@ -217,7 +237,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.08, duration: 0.3 }}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl sm:text-3xl font-serif text-white hover:text-[#bef227] transition-colors"
+                  className="text-2xl sm:text-3xl font-serif text-white hover:text-[#BE132D] transition-colors"
                 >
                   {link.label}
                 </motion.a>
@@ -230,7 +250,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onExploreClick();
                 }}
-                className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#bef227] text-black font-bold text-sm rounded-full active:scale-98 transition-transform"
+                className="flex items-center justify-center gap-3 w-full py-3.5 bg-[#BE132D] text-white font-bold text-sm rounded-full active:scale-98 transition-transform"
               >
                 <span>{t.exploreCta}</span>
                 <ArrowRight className="w-4 h-4" />

@@ -3,7 +3,8 @@
 :root {
   --color-dark-bg: #0b120e;
   --color-card-dark: #131814;
-  --color-lime: #c8ff47;
+  --color-lime: #BE132D;
+  --color-brand: #BE132D;
   --color-terracotta: #df6b51;
   --color-lilac: #c3b8eb;
   --color-cream: #ebe8e1;
@@ -55,7 +56,7 @@ body {
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #c8ff47;
+  background: #BE132D;
 }
 
 /* Hide scrollbar for clean horizontal swipe on mobile */

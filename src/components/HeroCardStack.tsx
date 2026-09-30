@@ -93,7 +93,7 @@ export const HeroCardStack: React.FC<HeroCardStackProps> = () => {
     <div
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className="relative w-full max-w-[440px] h-[390px] sm:h-[450px] md:h-[510px] flex items-center justify-center select-none cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c8ff47] rounded-3xl"
+      className="relative w-full max-w-[440px] h-[390px] sm:h-[450px] md:h-[510px] flex items-center justify-center select-none cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D] rounded-3xl"
       aria-label="Interactive dish cards. Drag or press arrow keys to cycle."
     >
       <div className="relative w-[260px] sm:w-[330px] md:w-[370px] h-[340px] sm:h-[410px] md:h-[470px]">

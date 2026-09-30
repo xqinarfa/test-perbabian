@@ -20,9 +20,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ lang }) =>
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case "Target":
-        return <Target className="w-6 h-6 text-[#c8ff47]" />;
+        return <Target className="w-6 h-6 text-[#BE132D]" />;
       case "Sliders":
-        return <SlidersHorizontal className="w-6 h-6 text-[#c8ff47]" />;
+        return <SlidersHorizontal className="w-6 h-6 text-[#BE132D]" />;
       case "Sparkles":
       default:
         return (
@@ -32,7 +32,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ lang }) =>
             viewBox="0 0 24 24"
             fill="none"
             aria-hidden="true"
-            className="text-[#c8ff47]"
+            className="text-[#BE132D]"
           >
             <path
               d="m12 3-1.4 4.1a3 3 0 0 1-1.9 1.9L4.5 10.5l4.2 1.4a3 3 0 0 1 1.9 1.9L12 18l1.4-4.2a3 3 0 0 1 1.9-1.9l4.2-1.4L15.3 9a3 3 0 0 1-1.9-1.9L12 3Z"

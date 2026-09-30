@@ -35,7 +35,7 @@ export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({ text }) => {
             {items.map((item, idx) => (
               <span
                 key={`m1-${idx}`}
-                className="text-[#c8ff47] font-semibold text-[13px] sm:text-[14px] md:text-[15px] tracking-[0.08em] uppercase whitespace-nowrap select-none"
+                className="text-[#BE132D] font-semibold text-[13px] sm:text-[14px] md:text-[15px] tracking-[0.08em] uppercase whitespace-nowrap select-none"
               >
                 {item}
               </span>
@@ -55,7 +55,7 @@ export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({ text }) => {
             {items.map((item, idx) => (
               <span
                 key={`m2-${idx}`}
-                className="text-[#c8ff47] font-semibold text-[13px] sm:text-[14px] md:text-[15px] tracking-[0.08em] uppercase whitespace-nowrap select-none"
+                className="text-[#BE132D] font-semibold text-[13px] sm:text-[14px] md:text-[15px] tracking-[0.08em] uppercase whitespace-nowrap select-none"
               >
                 {item}
               </span>

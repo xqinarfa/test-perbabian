@@ -15,12 +15,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Perbabian — Direktori Kuliner Non-Halal Terkurasi di Indonesia",
+  title: "Perbabian — Direktori Kuliner Babi Terkurasi di Indonesia",
   description:
-    "Panduan lengkap restoran, kedai, dan street food dengan olahan daging serta minyak babi (lard) di seluruh Indonesia. Transparansi bahan dan status non-halal terpercaya.",
+    "Panduan lengkap restoran, kedai, dan street food dengan olahan daging serta minyak babi (lard) di seluruh Indonesia. Transparansi bahan dan olahan babi terpercaya.",
   keywords: [
     "perbabian",
-    "kuliner non halal",
+    "kuliner babi",
     "babi guling",
     "samcan crispy",
     "bakmi babi",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Perbabian" }],
   openGraph: {
-    title: "Perbabian — Direktori Kuliner Non-Halal Terkurasi di Indonesia",
+    title: "Perbabian — Direktori Kuliner Babi Terkurasi di Indonesia",
     description:
       "Panduan lengkap restoran, kedai, dan street food dengan olahan daging serta minyak babi di seluruh Indonesia.",
     type: "website",
@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${bodoniModa.variable} ${inter.variable}`}>
-      <body className="antialiased text-[#11140f] bg-[#0b0e0c] font-sans selection:bg-[#bef227] selection:text-black">
+      <body className="antialiased text-[#11140f] bg-[#0b0e0c] font-sans selection:bg-[#BE132D] selection:text-white">
         {children}
       </body>
     </html>

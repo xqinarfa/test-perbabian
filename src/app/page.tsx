@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
-      <main className="min-h-screen bg-[#0b0e0c] text-[#11140f] overflow-x-clip selection:bg-[#bef227] selection:text-black">
+      <main className="min-h-screen bg-[#0b0e0c] text-[#11140f] overflow-x-clip selection:bg-[#BE132D] selection:text-white">
         {/* Floating Navbar with Scrollspy & Language Toggle */}
         <Navbar
           lang={lang}
@@ -88,11 +88,11 @@ export default function Home() {
               >
                 <MagneticButton
                   onClick={() => scrollToSection("cardapio")}
-                  className="inline-flex items-center gap-3 pl-6 pr-2 py-2 bg-[#c8ff47] hover:bg-[#d8ff5e] text-black font-bold text-xs sm:text-sm rounded-full transition-colors group shadow-xl shadow-[#c8ff47]/20 cursor-pointer"
+                  className="inline-flex items-center gap-3 pl-6 pr-2 py-2 bg-[#BE132D] hover:bg-[#d81a37] text-white font-bold text-xs sm:text-sm rounded-full transition-colors group shadow-xl shadow-[#BE132D]/30 cursor-pointer"
                 >
                   <span>{t.hero.cta}</span>
-                  <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-200">
-                    <ArrowRight className="w-4 h-4 text-[#c8ff47] group-hover:translate-x-0.5 transition-transform" />
+                  <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center text-[#BE132D] group-hover:scale-105 transition-transform duration-200">
+                    <ArrowRight className="w-4 h-4 text-[#BE132D] group-hover:translate-x-0.5 transition-transform" />
                   </span>
                 </MagneticButton>
               </motion.div>

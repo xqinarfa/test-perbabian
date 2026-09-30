@@ -57,10 +57,10 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
   ];
 
   const NON_HALAL_LEVELS = [
-    { id: "all", label: "Semua Level Non-Halal" },
-    { id: "pork_meat", label: "Menu Olahan Babi (Pork Meat)" },
-    { id: "lard_used", label: "Mengandung Minyak Babi (Lard Only)" },
-    { id: "kitchen_100_non_halal", label: "100% Non-Halal Kitchen" },
+    { id: "all", label: "Semua Kategori Babi" },
+    { id: "pork_meat", label: "Menu Olahan Daging Babi" },
+    { id: "lard_used", label: "Menggunakan Minyak Babi (Lard)" },
+    { id: "kitchen_100_non_halal", label: "100% Dapur Babi" },
   ];
 
   const filteredRestaurants = useMemo(() => {
@@ -83,7 +83,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
         return false;
       }
 
-      // Non-Halal Level match
+      // Pork category match
       if (selectedLevel !== "all") {
         if (!r.pork_status.includes(selectedLevel as any)) {
           return false;
@@ -163,7 +163,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
               value={activeQuery}
               onChange={(e) => setActiveQuery(e.target.value)}
               placeholder="Cari restoran, menu (babi guling, samcan, bakmi), atau area..."
-              className="w-full pl-11 pr-14 py-2.5 sm:py-3 bg-black/40 border border-white/10 rounded-full text-xs sm:text-sm text-white placeholder-white/45 focus:outline-none focus:border-[#c8ff47]/60 transition-colors"
+              className="w-full pl-11 pr-14 py-2.5 sm:py-3 bg-black/40 border border-white/10 rounded-full text-xs sm:text-sm text-white placeholder-white/45 focus:outline-none focus:border-[#BE132D]/60 transition-colors"
             />
             {activeQuery && (
               <button
@@ -186,7 +186,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                 <select
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
-                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#c8ff47]/60 transition-colors cursor-pointer"
+                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
                 >
                   {CITIES.map((c) => (
                     <option key={c.id} value={c.id} className="bg-[#11140f] text-white">
@@ -209,7 +209,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#c8ff47]/60 transition-colors cursor-pointer"
+                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat.id} value={cat.id} className="bg-[#11140f] text-white">
@@ -223,16 +223,16 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
               </div>
             </div>
 
-            {/* Dropdown 3: Level Non-Halal */}
+            {/* Dropdown 3: Kategori Babi */}
             <div className="space-y-1.5">
               <label className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white/60">
-                Level Non-Halal
+                Kategori Babi
               </label>
               <div className="relative">
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#c8ff47]/60 transition-colors cursor-pointer"
+                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
                 >
                   {NON_HALAL_LEVELS.map((lvl) => (
                     <option key={lvl.id} value={lvl.id} className="bg-[#11140f] text-white">
@@ -253,14 +253,14 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                 onClick={() => setOpenNowOnly(!openNowOnly)}
                 className={`w-full flex items-center justify-between px-3.5 py-2 sm:py-2.5 rounded-xl border text-xs font-semibold tracking-wider transition-all cursor-pointer ${
                   openNowOnly
-                    ? "bg-[#c8ff47]/15 border-[#c8ff47] text-[#c8ff47]"
+                    ? "bg-emerald-500/15 border-emerald-400 text-emerald-300"
                     : "bg-black/40 border-white/10 text-white/70 hover:text-white"
                 }`}
               >
                 <span className="flex items-center gap-2">
                   <span
                     className={`w-2 h-2 rounded-full ${
-                      openNowOnly ? "bg-[#c8ff47] shadow-[0_0_6px_#c8ff47]" : "bg-white/40"
+                      openNowOnly ? "bg-emerald-400 shadow-[0_0_6px_#34d399]" : "bg-white/40"
                     }`}
                   />
                   <span>Buka Sekarang</span>
@@ -285,14 +285,14 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`relative px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold tracking-wider transition-colors duration-200 cursor-pointer select-none whitespace-nowrap shrink-0 ${
                   isActive
-                    ? "text-black"
+                    ? "text-white"
                     : "text-white/60 hover:text-white bg-white/5 border border-white/5"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="dishFilterTab"
-                    className="absolute inset-0 bg-[#c8ff47] rounded-full shadow-md shadow-[#c8ff47]/20"
+                    className="absolute inset-0 bg-[#BE132D] rounded-full shadow-md shadow-[#BE132D]/20"
                     transition={{ type: "spring", stiffness: 420, damping: 30 }}
                   />
                 )}
@@ -304,7 +304,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
 
         {/* Results Counter & Active Filters Display */}
         <div className="flex items-center justify-between text-xs text-white/50 pt-1">
-          <span>Menampilkan {filteredRestaurants.length} tempat makan non-halal</span>
+          <span>Menampilkan {filteredRestaurants.length} tempat makan olahan babi</span>
           {(selectedCity !== "all" ||
             selectedCategory !== "all" ||
             selectedLevel !== "all" ||
@@ -312,7 +312,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
             activeQuery) && (
             <button
               onClick={resetFilters}
-              className="text-[#c8ff47] hover:underline cursor-pointer"
+              className="text-[#BE132D] hover:underline cursor-pointer"
             >
               Reset semua filter
             </button>
@@ -342,7 +342,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                     ease: FRAMER_EASE,
                   }}
                   onClick={() => setSelectedDish(dish)}
-                  className="group cursor-pointer bg-[#131814] hover:bg-[#18201a] border border-white/10 hover:border-[#c8ff47]/40 rounded-[24px] md:rounded-[28px] p-3.5 flex flex-col justify-between shadow-lg will-change-transform"
+                  className="group cursor-pointer bg-[#131814] hover:bg-[#18201a] border border-white/10 hover:border-[#BE132D]/40 rounded-[24px] md:rounded-[28px] p-3.5 flex flex-col justify-between shadow-lg will-change-transform"
                 >
                   <div>
                     {/* Restaurant Photo */}
@@ -375,13 +375,13 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                         <span
                           className={`px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase backdrop-blur-md border flex items-center gap-1.5 ${
                             dish.is_open_now
-                              ? "bg-black/70 text-[#c8ff47] border-[#c8ff47]/30"
+                              ? "bg-black/70 text-emerald-400 border-emerald-400/30"
                               : "bg-black/70 text-white/60 border-white/10"
                           }`}
                         >
                           <span
                             className={`w-1.5 h-1.5 rounded-full ${
-                              dish.is_open_now ? "bg-[#c8ff47]" : "bg-red-400"
+                              dish.is_open_now ? "bg-emerald-400 shadow-[0_0_6px_#10b981]" : "bg-red-400"
                             }`}
                           />
                           <span>{dish.is_open_now ? "Buka" : "Tutup"}</span>
@@ -395,28 +395,16 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                         <h3 className="text-xl sm:text-2xl font-serif font-medium text-white/95 group-hover:text-white transition-colors">
                           {dish.name}
                         </h3>
-                        <span className="text-xs font-mono font-semibold text-[#c8ff47] shrink-0">
+                        <span className="text-xs font-mono font-semibold text-[#BE132D] shrink-0">
                           {dish.price_range}
                         </span>
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-white/60">
-                        <MapPin className="w-3.5 h-3.5 text-[#c8ff47] shrink-0" />
+                        <MapPin className="w-3.5 h-3.5 text-[#BE132D] shrink-0" />
                         <span>
                           {dish.district}, {dish.city}
                         </span>
                       </div>
-                    </div>
-
-                    {/* Status Badges from PRD */}
-                    <div className="px-2 flex flex-wrap gap-1.5 mb-3">
-                      {dish.status_badges.slice(0, 2).map((badge) => (
-                        <span
-                          key={badge}
-                          className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/10 text-[10px] font-semibold tracking-wider text-[#c8ff47]/90"
-                        >
-                          {badge}
-                        </span>
-                      ))}
                     </div>
 
                     {/* Signature Dish Preview */}
@@ -428,7 +416,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
 
                   {/* Card Footer Link */}
                   <div className="pt-3 px-2 flex items-center justify-between border-t border-white/5 mt-2">
-                    <span className="text-xs font-semibold tracking-wider text-[#c8ff47] flex items-center gap-1 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200">
+                    <span className="text-xs font-semibold tracking-wider text-[#BE132D] flex items-center gap-1 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200">
                       <span>{t.cardCta}</span>
                     </span>
                     <span className="text-[11px] text-white/40 font-mono">
@@ -446,20 +434,20 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
             animate={{ opacity: 1, y: 0 }}
             className="py-16 px-6 text-center max-w-lg mx-auto bg-white/[0.02] border border-white/10 rounded-[32px] space-y-4"
           >
-            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto text-[#c8ff47]">
+            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto text-[#BE132D]">
               <AlertCircle className="w-6 h-6" />
             </div>
             <h3 className="text-2xl font-serif font-medium text-white">
               Belum ada rekomendasi di area ini
             </h3>
             <p className="text-sm text-white/70 leading-relaxed font-sans">
-              Kami belum menemukan tempat makan non-halal yang terdaftar di lokasi yang kamu pilih. Punya rekomendasi langganan?
+              Kami belum menemukan tempat makan olahan babi yang terdaftar di lokasi yang kamu pilih. Punya rekomendasi langganan?
             </p>
             <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="#cta"
                 onClick={onOpenSubmitModal}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#c8ff47] hover:bg-[#d8ff5e] text-black font-bold text-xs uppercase tracking-wider transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#BE132D] hover:bg-[#a51026] text-white font-bold text-xs uppercase tracking-wider transition-all"
               >
                 <PlusCircle className="w-4 h-4" />
                 <span>Daftarkan Restoran Baru</span>
@@ -485,7 +473,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
           <span>{t.bottomTag}</span>
           <a
             href="#cta"
-            className="text-[#c8ff47] hover:underline transition-all flex items-center gap-1 cursor-pointer"
+            className="text-[#BE132D] hover:underline transition-all flex items-center gap-1 cursor-pointer"
           >
             <span>{t.bottomLink}</span>
           </a>

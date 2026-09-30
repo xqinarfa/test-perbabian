@@ -109,8 +109,8 @@ export const FoodLanguageBanner: React.FC<FoodLanguageBannerProps> = ({
               className="inline-flex items-center gap-3 pl-6 pr-2 py-2 bg-[#11140f] hover:bg-black text-white font-bold text-xs sm:text-sm rounded-full transition-colors group shadow-lg"
             >
               <span>{t.cta}</span>
-              <span className="w-8 h-8 rounded-full bg-[#bef227] flex items-center justify-center text-black group-hover:scale-105 transition-transform">
-                <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-0.5 transition-transform" />
+              <span className="w-8 h-8 rounded-full bg-[#BE132D] flex items-center justify-center text-white group-hover:scale-105 transition-transform">
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
               </span>
             </MagneticButton>
           </motion.div>
