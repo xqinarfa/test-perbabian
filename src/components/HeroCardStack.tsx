@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, PanInfo } from "framer-motion";
 
-interface HeroCardStackProps {
+export interface HeroCardStackProps {
   dragNotice?: string;
+  onActiveCardChange?: (src: string) => void;
 }
 
-interface CardItem {
+export interface CardItem {
   id: string;
   imageIndex: number;
   generation: number;
@@ -17,7 +18,7 @@ interface CardItem {
   title: string;
 }
 
-const CARDS_DATA = [
+export const HERO_CARDS_DATA = [
   {
     imageIndex: 0,
     src: "/images/mediterranean-bowl.jpg",
@@ -45,11 +46,11 @@ const CARD_LAYOUTS = [
   { x: -12, y: 24, scale: 0.9, rotate: -7 },
 ];
 
-export const HeroCardStack: React.FC<HeroCardStackProps> = () => {
+export const HeroCardStack: React.FC<HeroCardStackProps> = ({ onActiveCardChange }) => {
   const [cards, setCards] = useState<CardItem[]>([
-    { id: "c1", generation: 0, ...CARDS_DATA[0] },
-    { id: "c2", generation: 0, ...CARDS_DATA[1] },
-    { id: "c3", generation: 0, ...CARDS_DATA[2] },
+    { id: "c1", generation: 0, ...HERO_CARDS_DATA[0] },
+    { id: "c2", generation: 0, ...HERO_CARDS_DATA[1] },
+    { id: "c3", generation: 0, ...HERO_CARDS_DATA[2] },
   ]);
 
   const [exitingCard, setExitingCard] = useState<{ id: string; direction: number } | null>(null);
@@ -58,6 +59,11 @@ export const HeroCardStack: React.FC<HeroCardStackProps> = () => {
     if (exitingCard) return;
     const topCard = cards[0];
     setExitingCard({ id: topCard.id, direction });
+
+    // Instantly notify parent of revealed next card background
+    if (cards.length > 1 && onActiveCardChange) {
+      onActiveCardChange(cards[1].src);
+    }
 
     setTimeout(() => {
       setCards((prev) => {
@@ -72,9 +78,16 @@ export const HeroCardStack: React.FC<HeroCardStackProps> = () => {
     }, 280);
   };
 
+  // Ensure parent stays in sync whenever the top card changes
+  React.useEffect(() => {
+    if (cards[0] && onActiveCardChange) {
+      onActiveCardChange(cards[0].src);
+    }
+  }, [cards, onActiveCardChange]);
+
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     if (exitingCard) return;
-    if (Math.abs(info.offset.x) >= 72 || Math.abs(info.velocity.x) >= 520) {
+    if (Math.abs(info.offset.x) >= 40 || Math.abs(info.velocity.x) >= 260) {
       const direction = info.offset.x > 0 || info.velocity.x > 0 ? 1 : -1;
       cycleCard(direction);
     }

@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Language, CONTENT, DISHES, Dish } from "@/data/content";
 import { Navbar } from "@/components/Navbar";
-import { HeroCardStack } from "@/components/HeroCardStack";
+import { HeroCardStack, HERO_CARDS_DATA } from "@/components/HeroCardStack";
 import { MarqueeTicker } from "@/components/MarqueeTicker";
 import { PhilosophySection } from "@/components/PhilosophySection";
 import { DishGallery } from "@/components/DishGallery";
@@ -25,6 +26,7 @@ export default function Home() {
   const [lang, setLang] = useState<Language>("id");
   const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [activeHeroBg, setActiveHeroBg] = useState<string>(HERO_CARDS_DATA[0].src);
 
   const t = CONTENT[lang];
 
@@ -60,7 +62,34 @@ export default function Home() {
           id="inicio"
           className="w-full pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-16 md:pb-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-[#0b0e0c] text-white relative overflow-hidden"
         >
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Subtle Ambient Background synchronized with active Hero card */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={activeHeroBg}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={activeHeroBg}
+                  alt=""
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover object-center filter blur-[4px] scale-105 opacity-55 sm:opacity-60"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Dark gradient overlays: darker on the left text area, visible on the right, fades to black at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0b0e0c]/92 via-[#0b0e0c]/60 to-[#0b0e0c]/30" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0b0e0c]/70 via-transparent to-[#0b0e0c]" />
+          </div>
+
+          <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left Column: Heading & Description */}
             <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
               {/* Framer signature blur-in heading effect */}
@@ -105,7 +134,7 @@ export default function Home() {
               transition={{ duration: 0.65, delay: 0.1, ease: FRAMER_EASE }}
               className="lg:col-span-5 flex justify-center items-center"
             >
-              <HeroCardStack />
+              <HeroCardStack onActiveCardChange={setActiveHeroBg} />
             </motion.div>
           </div>
         </section>
