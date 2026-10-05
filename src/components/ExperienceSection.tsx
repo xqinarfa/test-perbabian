@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Target, SlidersHorizontal, Sparkles } from "lucide-react";
+import { Target, SlidersHorizontal } from "lucide-react";
 import { motion } from "framer-motion";
 import { Language, CONTENT } from "@/data/content";
 import {
@@ -71,7 +71,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ lang }) =>
               }}
               className="p-6 sm:p-8 md:p-10 rounded-[24px] sm:rounded-[28px] bg-[#131814] border border-white/10 flex flex-col justify-between min-h-[240px] sm:min-h-[260px] group shadow-lg will-change-transform cursor-default"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white/[0.06] flex items-center justify-center mb-10 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-white/6 flex items-center justify-center mb-10 group-hover:scale-105 transition-transform duration-300">
                 {getIcon(card.icon)}
               </div>
 

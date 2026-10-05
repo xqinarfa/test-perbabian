@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Language, CONTENT } from "@/data/content";
 import {

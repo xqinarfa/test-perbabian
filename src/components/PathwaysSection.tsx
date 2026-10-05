@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Language, CONTENT } from "@/data/content";
 import { FRAMER_EASE, FRAMER_TEXT_BLUR_IN, FRAMER_TAP } from "@/lib/animations";

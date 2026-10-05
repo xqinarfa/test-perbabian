@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Language, CONTENT } from "@/data/content";
 import { FRAMER_EASE, FRAMER_TEXT_BLUR_IN } from "@/lib/animations";

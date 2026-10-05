@@ -2,13 +2,12 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import { Search, MapPin, Clock, Eye, SlidersHorizontal, AlertCircle, PlusCircle } from "lucide-react";
+import { Search, MapPin, Eye, AlertCircle, PlusCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Restaurant, RESTAURANTS, Language, CONTENT } from "@/data/content";
+import { Restaurant, RESTAURANTS, Language, CONTENT, NonHalalLevel } from "@/data/content";
 import {
   FRAMER_EASE,
   FRAMER_TEXT_BLUR_IN,
-  FRAMER_HOVER_CARD,
   FRAMER_TAP,
 } from "@/lib/animations";
 import { DishModal } from "./DishModal";
@@ -85,7 +84,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
 
       // Pork category match
       if (selectedLevel !== "all") {
-        if (!r.pork_status.includes(selectedLevel as any)) {
+        if (!r.pork_status.includes(selectedLevel as NonHalalLevel)) {
           return false;
         }
       }
@@ -154,7 +153,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
         </div>
 
         {/* Filter Bar from PRD */}
-        <div className="space-y-4 bg-white/[0.03] p-4 sm:p-6 rounded-[22px] sm:rounded-[28px] border border-white/10 backdrop-blur-sm">
+        <div className="space-y-4 bg-white/3 p-4 sm:p-6 rounded-[22px] sm:rounded-[28px] border border-white/10 backdrop-blur-sm">
           {/* Top Search Bar */}
           <div className="relative w-full">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50" />
@@ -326,7 +325,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7"
           >
             <AnimatePresence>
-              {filteredRestaurants.map((dish, idx) => (
+              {filteredRestaurants.map((dish) => (
                 <motion.div
                   key={dish.id}
                   layout
@@ -334,94 +333,99 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  whileHover={FRAMER_HOVER_CARD}
+                  whileHover={{
+                    y: -5,
+                    boxShadow:
+                      "0px 0px 18px 1px rgba(255, 45, 85, 0.4), 0px 8px 24px -4px rgba(0, 0, 0, 0.7)",
+                  }}
                   whileTap={FRAMER_TAP}
                   transition={{
-                    duration: 0.58,
-                    delay: idx * 0.06,
+                    duration: 0.35,
                     ease: FRAMER_EASE,
                   }}
                   onClick={() => setSelectedDish(dish)}
-                  className="group cursor-pointer bg-[#131814] hover:bg-[#18201a] border border-white/10 hover:border-[#BE132D]/40 rounded-[24px] md:rounded-[28px] p-3.5 flex flex-col justify-between shadow-lg will-change-transform"
+                  className="card dish-card group cursor-pointer flex flex-col will-change-transform"
                 >
-                  <div>
-                    {/* Restaurant Photo */}
-                    <div className="relative w-full aspect-[4/3] rounded-[18px] md:rounded-[20px] overflow-hidden bg-neutral-900 mb-4">
-                      <Image
-                        src={dish.image}
-                        alt={dish.name}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                      />
+                  <div className="card2 dish-card2 p-3.5 flex flex-col justify-between overflow-hidden">
+                    <div>
+                      {/* Restaurant Photo */}
+                      <div className="relative w-full aspect-[4/3] rounded-[18px] md:rounded-[20px] overflow-hidden bg-neutral-900 mb-4">
+                        <Image
+                          src={dish.image}
+                          alt={dish.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-108"
+                        />
 
-                      {/* Quick view overlay */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 text-black text-xs font-bold tracking-wider uppercase shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform duration-200">
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>Lihat Detail Restoran</span>
+                        {/* Quick view overlay */}
+                        <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-bold tracking-wider uppercase shadow-2xl transform translate-y-3 group-hover:translate-y-0 group-hover:scale-100 scale-95 transition-all duration-300 ease-out">
+                            <Eye className="w-3.5 h-3.5 text-[#BE132D]" />
+                            <span>Lihat Detail Restoran</span>
+                          </div>
+                        </div>
+
+                        {/* Category Tag on Image */}
+                        <div className="absolute bottom-3 left-3 pointer-events-none">
+                          <span className="px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-[10px] font-bold tracking-wider uppercase text-white/90 border border-white/20">
+                            {dish.category}
+                          </span>
+                        </div>
+
+                        {/* Status Buka / Tutup Pill */}
+                        <div className="absolute top-3 right-3 pointer-events-none">
+                          <span
+                            className={`px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase backdrop-blur-md border flex items-center gap-1.5 ${
+                              dish.is_open_now
+                                ? "bg-black/75 text-emerald-400 border-emerald-400/40"
+                                : "bg-black/75 text-white/60 border-white/15"
+                            }`}
+                          >
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                dish.is_open_now ? "bg-emerald-400 shadow-[0_0_8px_#10b981]" : "bg-red-400"
+                              }`}
+                            />
+                            <span>{dish.is_open_now ? "Buka" : "Tutup"}</span>
+                          </span>
                         </div>
                       </div>
 
-                      {/* Category Tag on Image */}
-                      <div className="absolute bottom-3 left-3 pointer-events-none">
-                        <span className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] font-bold tracking-wider uppercase text-white/90 border border-white/15">
-                          {dish.category}
-                        </span>
+                      {/* Restaurant Title & Location */}
+                      <div className="px-2 mb-3">
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <h3 className="text-xl sm:text-2xl font-serif font-medium text-white/95 group-hover:text-white transition-colors">
+                            {dish.name}
+                          </h3>
+                          <span className="text-xs font-mono font-bold text-[#ff4d6d] group-hover:scale-110 transition-transform shrink-0">
+                            {dish.price_range}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs text-white/60">
+                          <MapPin className="w-3.5 h-3.5 text-[#ff3355] shrink-0 group-hover:scale-110 transition-transform" />
+                          <span>
+                            {dish.district}, {dish.city}
+                          </span>
+                        </div>
                       </div>
 
-                      {/* Status Buka / Tutup Pill */}
-                      <div className="absolute top-3 right-3 pointer-events-none">
-                        <span
-                          className={`px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase backdrop-blur-md border flex items-center gap-1.5 ${
-                            dish.is_open_now
-                              ? "bg-black/70 text-emerald-400 border-emerald-400/30"
-                              : "bg-black/70 text-white/60 border-white/10"
-                          }`}
-                        >
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full ${
-                              dish.is_open_now ? "bg-emerald-400 shadow-[0_0_6px_#10b981]" : "bg-red-400"
-                            }`}
-                          />
-                          <span>{dish.is_open_now ? "Buka" : "Tutup"}</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Restaurant Title & Location */}
-                    <div className="px-2 mb-3">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <h3 className="text-xl sm:text-2xl font-serif font-medium text-white/95 group-hover:text-white transition-colors">
-                          {dish.name}
-                        </h3>
-                        <span className="text-xs font-mono font-semibold text-[#BE132D] shrink-0">
-                          {dish.price_range}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs text-white/60">
-                        <MapPin className="w-3.5 h-3.5 text-[#BE132D] shrink-0" />
-                        <span>
-                          {dish.district}, {dish.city}
-                        </span>
+                      {/* Signature Dish Preview */}
+                      <div className="px-2 text-xs text-white/70 line-clamp-1 mb-2 font-sans">
+                        <span className="text-white/40">Andalan: </span>
+                        <span>{dish.signature_dishes.join(" • ")}</span>
                       </div>
                     </div>
 
-                    {/* Signature Dish Preview */}
-                    <div className="px-2 text-xs text-white/70 line-clamp-1 mb-2 font-sans">
-                      <span className="text-white/40">Andalan: </span>
-                      <span>{dish.signature_dishes.join(" • ")}</span>
+                    {/* Card Footer Link */}
+                    <div className="pt-3 px-2 flex items-center justify-between border-t border-white/5 mt-2">
+                      <span className="text-xs font-semibold tracking-wider text-[#ff3355] group-hover:text-white flex items-center gap-1.5 group-hover:translate-x-1.5 transition-all duration-300">
+                        <span>{t.cardCta}</span>
+                      </span>
+                      <span className="text-[11px] text-white/40 font-mono">
+                        {dish.opening_hours.split(",")[0]}
+                      </span>
                     </div>
-                  </div>
-
-                  {/* Card Footer Link */}
-                  <div className="pt-3 px-2 flex items-center justify-between border-t border-white/5 mt-2">
-                    <span className="text-xs font-semibold tracking-wider text-[#BE132D] flex items-center gap-1 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-200">
-                      <span>{t.cardCta}</span>
-                    </span>
-                    <span className="text-[11px] text-white/40 font-mono">
-                      {dish.opening_hours.split(",")[0]}
-                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -432,7 +436,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="py-16 px-6 text-center max-w-lg mx-auto bg-white/[0.02] border border-white/10 rounded-[32px] space-y-4"
+            className="py-16 px-6 text-center max-w-lg mx-auto bg-white/2 border border-white/10 rounded-[32px] space-y-4"
           >
             <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto text-[#BE132D]">
               <AlertCircle className="w-6 h-6" />

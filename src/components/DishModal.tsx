@@ -1,8 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { X, Clock, MapPin, CheckCircle2, ExternalLink, ShieldCheck } from "lucide-react";
+import {
+  X,
+  Clock,
+  MapPin,
+  ExternalLink,
+  ShieldCheck,
+  Copy,
+  Check,
+  Utensils,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Restaurant, Language } from "@/data/content";
@@ -15,6 +24,18 @@ interface DishModalProps {
 
 export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => {
   const hookLenis = useLenis();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyAddress = async () => {
+    if (!dish?.address) return;
+    try {
+      await navigator.clipboard.writeText(dish.address);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      // Fallback if clipboard API is restricted
+    }
+  };
 
   useEffect(() => {
     if (!dish) return;
@@ -59,141 +80,218 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
 
   if (!dish) return null;
 
+  const isEn = lang === "en";
+
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10 overscroll-contain"
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 overscroll-contain"
         data-lenis-prevent
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dish-modal-title"
       >
-        {/* Backdrop */}
+        {/* Backdrop with weighted blur */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           onClick={onClose}
           onTouchMove={(e) => e.stopPropagation()}
           onWheel={(e) => e.stopPropagation()}
-          className="absolute inset-0 bg-black/80 backdrop-blur-md"
+          className="absolute inset-0 bg-black/85 backdrop-blur-md"
+          aria-hidden="true"
         />
 
         {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.96, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ type: "spring", stiffness: 320, damping: 30 }}
-          className="relative w-full max-w-2xl bg-[#131814] text-white border border-white/15 rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl z-10 max-h-[92vh] sm:max-h-[90vh] flex flex-col overscroll-contain"
+          exit={{ opacity: 0, scale: 0.96, y: 16 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-2xl bg-[#131814] text-white border border-white/15 rounded-3xl sm:rounded-4xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] z-10 max-h-[92vh] sm:max-h-[88vh] flex flex-col overscroll-contain"
           data-lenis-prevent
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/90 border border-white/20 flex items-center justify-center text-white transition-all cursor-pointer"
-            aria-label="Tutup modal"
+            className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/75 hover:bg-black border border-white/20 hover:border-white/40 flex items-center justify-center text-white transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D]"
+            aria-label={isEn ? "Close modal" : "Tutup modal"}
           >
-            <X className="w-4 h-4 sm:w-5 sm:h-5" />
+            <X className="w-5 h-5" />
           </button>
 
           {/* Scrollable Container */}
           <div
-            className="overflow-y-auto p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 overscroll-contain"
+            className="overflow-y-auto overscroll-contain"
             data-lenis-prevent
           >
-            {/* Restaurant Image */}
-            <div className="relative w-full h-48 sm:h-64 md:h-72 rounded-[18px] sm:rounded-[22px] overflow-hidden bg-neutral-900 border border-white/10">
+            {/* Editorial Hero Media */}
+            <div className="relative w-full h-52 sm:h-64 md:h-72 bg-neutral-950 overflow-hidden">
               <Image
                 src={dish.image}
                 alt={dish.name}
                 fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 640px"
+                priority
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 680px"
               />
-              <div className="absolute bottom-3 left-3 flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-bold tracking-wider uppercase text-[#BE132D] border border-[#BE132D]/30">
+              {/* Natural gradient fade into surface */}
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-[#131814] via-[#131814]/30 to-transparent"
+                aria-hidden="true"
+              />
+
+              {/* Verified seal & category bar */}
+              <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-bold tracking-widest uppercase text-white border border-white/20">
                   {dish.category}
                 </span>
                 {dish.verified_by_team && (
-                  <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[11px] font-bold tracking-wider uppercase text-white/90 border border-white/20 flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#BE132D]" />
-                    <span>Terverifikasi Tim</span>
+                  <span className="px-3 py-1 rounded-full bg-[#BE132D]/90 backdrop-blur-md text-[11px] font-bold tracking-wider uppercase text-white border border-[#BE132D] flex items-center gap-1.5 shadow-sm">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>{isEn ? "Verified by Team" : "Terverifikasi Tim"}</span>
                   </span>
                 )}
               </div>
             </div>
 
-            {/* Header info */}
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <h3 className="text-2xl sm:text-3xl font-serif font-medium tracking-tight">
-                  {dish.name}
-                </h3>
-                <span className="text-sm font-mono font-bold text-[#BE132D] px-3 py-1 bg-white/5 border border-white/10 rounded-full">
-                  {dish.price_range}
-                </span>
-              </div>
+            {/* Core Modal Body */}
+            <div className="p-5 sm:p-7 md:p-8 space-y-6 -mt-3 relative z-10">
+              {/* Restaurant Identity Header */}
+              <div className="space-y-3">
+                {/* Location Breadcrumb */}
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white/60">
+                  <MapPin className="w-3.5 h-3.5 text-[#BE132D] shrink-0" />
+                  <span>
+                    {dish.district}, {dish.city} • {dish.province}
+                  </span>
+                </div>
 
-              {/* Location Tag */}
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
-                <MapPin className="w-4 h-4 text-[#BE132D] shrink-0" />
-                <span>{dish.address}</span>
-              </div>
-
-              <p className="text-white/80 text-sm sm:text-base leading-relaxed pt-1">
-                {dish.description}
-              </p>
-            </div>
-
-            {/* Opening Hours & Live Status */}
-            <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2.5 text-xs sm:text-sm">
-                <Clock className="w-4 h-4 text-white shrink-0" />
-                <span>{dish.opening_hours}</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider shrink-0">
-                <span
-                  className={`w-2.5 h-2.5 rounded-full ${
-                    dish.is_open_now ? "bg-emerald-400 shadow-[0_0_8px_#10b981]" : "bg-red-500"
-                  }`}
-                />
-                <span className={dish.is_open_now ? "text-emerald-400" : "text-white/60"}>
-                  {dish.is_open_now ? "Buka Sekarang" : "Tutup"}
-                </span>
-              </div>
-            </div>
-
-            {/* Signature Dishes */}
-            <div className="space-y-3 pt-1 border-t border-white/10">
-              <h4 className="text-xs font-bold tracking-[0.16em] uppercase text-white flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-white" />
-                <span>{lang === "en" ? "Signature Dishes" : "Menu Andalan"}</span>
-              </h4>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {dish.signature_dishes.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-white/90"
+                {/* Title & Price Tier */}
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <h2
+                    id="dish-modal-title"
+                    className="text-2xl sm:text-3xl md:text-4xl font-serif font-medium tracking-tight text-white leading-tight"
                   >
-                    <div className="w-4 h-4 rounded-full bg-white/15 flex items-center justify-center shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                    </div>
-                    <span className="font-medium">{item}</span>
+                    {dish.name}
+                  </h2>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold text-white px-3 py-1 bg-white/10 border border-white/15 rounded-full">
+                      {dish.price_range}
+                    </span>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            {/* Action Button: Google Maps Navigation */}
-            <div className="pt-2">
-              <a
-                href={dish.gmaps_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-[#BE132D] hover:bg-[#d81a37] text-white font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-[#BE132D]/25 cursor-pointer"
-              >
-                <span>Buka Rute di Google Maps</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                {/* Editorial Description */}
+                <p className="text-white/85 text-sm sm:text-base leading-relaxed">
+                  {dish.description}
+                </p>
+              </div>
+
+
+              {/* Hours & Real-time Status (Flattened row, not nested cards) */}
+              <div className="border-t border-white/10 pt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
+                <div className="flex items-center gap-2.5 text-white/80">
+                  <Clock className="w-4 h-4 text-white/60 shrink-0" />
+                  <span className="font-mono text-xs">{dish.opening_hours}</span>
+                </div>
+
+                <div className="inline-flex items-center gap-2 shrink-0">
+                  <span
+                    className={`w-2.5 h-2.5 rounded-full ${
+                      dish.is_open_now
+                        ? "bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]"
+                        : "bg-rose-500"
+                    }`}
+                  />
+                  <span
+                    className={`font-semibold tracking-wider text-xs uppercase ${
+                      dish.is_open_now ? "text-emerald-400" : "text-white/60"
+                    }`}
+                  >
+                    {dish.is_open_now
+                      ? isEn
+                        ? "Open Now"
+                        : "Buka Sekarang"
+                      : isEn
+                      ? "Closed"
+                      : "Tutup"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Curated Signature Dishes (Editorial Index instead of nested mini-cards) */}
+              <div className="border-t border-white/10 pt-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-bold tracking-[0.16em] uppercase text-white/90 flex items-center gap-2">
+                    <Utensils className="w-3.5 h-3.5 text-[#BE132D]" />
+                    <span>{isEn ? "Signature Dishes" : "Menu Andalan"}</span>
+                  </h3>
+                  <span className="text-[11px] font-mono text-white/40">
+                    {dish.signature_dishes.length} {isEn ? "items" : "menu"}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                  {dish.signature_dishes.map((item, index) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-colors"
+                    >
+                      <span className="font-mono text-xs font-bold text-[#BE132D] shrink-0">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-xs sm:text-sm font-medium text-white/95">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Address & Direct Actions */}
+              <div className="border-t border-white/10 pt-5 space-y-4">
+                {/* Physical Address with Copy Action */}
+                <div className="flex items-start justify-between gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                  <div className="flex items-start gap-2.5 text-xs text-white/75 leading-relaxed">
+                    <MapPin className="w-4 h-4 text-[#BE132D] shrink-0 mt-0.5" />
+                    <span>{dish.address}</span>
+                  </div>
+                  <button
+                    onClick={handleCopyAddress}
+                    type="button"
+                    className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D]"
+                    title={isEn ? "Copy address" : "Salin alamat"}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400">
+                          {isEn ? "Copied" : "Tersalin"}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>{isEn ? "Copy" : "Salin"}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Primary Route Navigation */}
+                <a
+                  href={dish.gmaps_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-[#BE132D] hover:bg-[#d81a37] active:scale-[0.99] text-white font-bold text-sm tracking-wider uppercase transition-all shadow-lg shadow-[#BE132D]/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  <span>{isEn ? "Open in Google Maps" : "Buka Rute di Google Maps"}</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
