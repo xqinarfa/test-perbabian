@@ -67,7 +67,7 @@ export const FoodLanguageBanner: React.FC<FoodLanguageBannerProps> = ({
             >
               <div className="relative w-full h-full rounded-[20px] sm:rounded-[22px] overflow-hidden bg-neutral-900">
                 <Image
-                  src="/images/mediterranean-bowl.jpg"
+                  src="/images/samcan-crispy-pik.png"
                   alt="Food as a language"
                   fill
                   sizes="(max-width: 640px) 270px, (max-width: 768px) 320px, 360px"

@@ -44,7 +44,7 @@ export const RESTAURANTS: Restaurant[] = [
     opening_hours: "Setiap Hari, 10:00 - 22:00 WIB",
     is_open_now: true,
     verified_by_team: true,
-    image: "/images/mediterranean-bowl.jpg",
+    image: "/images/samcan-crispy-pik.png",
     description: "Spesialis samcan panggang dengan kulit super renyah dan daging lembut berempah khas Pontianak, disajikan bersama sambal cocolan otentik.",
   },
   {
@@ -64,7 +64,7 @@ export const RESTAURANTS: Restaurant[] = [
     opening_hours: "Setiap Hari, 08:30 - 19:30 WITA",
     is_open_now: true,
     verified_by_team: true,
-    image: "/images/greens-grilled.jpg",
+    image: "/images/babi-guling-sanur.png",
     description: "Warung babi guling legendaris di Sanur dengan racikan base genep Bali otentik, kulit garing renyah keemasan, dan kuah ares yang kaya rempah.",
   },
   {
@@ -84,7 +84,7 @@ export const RESTAURANTS: Restaurant[] = [
     opening_hours: "Selasa - Minggu, 06:30 - 14:30 WIB",
     is_open_now: true,
     verified_by_team: true,
-    image: "/images/crunchy-salad.jpg",
+    image: "/images/bakmi-babi-medan.png",
     description: "Kedai bakmi babi klasik Medan dengan tekstur mie keriting kenyal, lumuran minyak babi wangi daun bawang, dan topping cincang gurih melimpah.",
   },
   {
@@ -104,7 +104,7 @@ export const RESTAURANTS: Restaurant[] = [
     opening_hours: "Setiap Hari, 11:00 - 22:30 WITA",
     is_open_now: true,
     verified_by_team: true,
-    image: "/images/chicken-rice.jpg",
+    image: "/images/pork-ribs-ubud.png",
     description: "Iga babi bakar legendaris Ubud yang dimarinasi bumbu BBQ karamel manis gurih, dibakar di atas arang batok kelapa dengan aroma asap khas memikat.",
   },
   {
@@ -124,7 +124,7 @@ export const RESTAURANTS: Restaurant[] = [
     opening_hours: "Senin - Sabtu, 17:00 - 23:30 WIB",
     is_open_now: true,
     verified_by_team: true,
-    image: "/images/seasonal-ingredients.jpg",
+    image: "/images/kwetiau-babi-surabaya.png",
     description: "Kuliner street food malam Surabaya dengan teknik goreng wok hei berapi besar, menggunakan minyak lard aromatik dan potongan lapcheong serta chasiu manis.",
   },
   {
@@ -144,7 +144,7 @@ export const RESTAURANTS: Restaurant[] = [
     opening_hours: "Rabu - Senin, 10:00 - 21:00 WIB",
     is_open_now: false,
     verified_by_team: true,
-    image: "/images/vegetarian-bowl.jpg",
+    image: "/images/lomie-babi-bandung.png",
     description: "Kedai legendaris di kawasan pecinan Gardujati Bandung dengan kuah lomie kental gurih manis bertabur ebi, daging babi empuk, dan krupuk kulit dorokdok.",
   },
 ];
@@ -227,7 +227,7 @@ export const CONTENT = {
           cta: "Jelajahi Olahan Daging →",
           bg: "bg-[#c3b8eb]",
           text: "text-[#11140f]",
-          image: "/images/mediterranean-bowl.jpg",
+          image: "/images/samcan-crispy-pik.png",
           dishId: "kedai-samcan-emas-pik",
         },
         {
@@ -239,7 +239,7 @@ export const CONTENT = {
           cta: "Jelajahi Aneka Bakmi →",
           bg: "bg-[#BE132D]",
           text: "text-white",
-          image: "/images/crunchy-salad.jpg",
+          image: "/images/bakmi-babi-medan.png",
           dishId: "bakmi-khek-selat-panjang",
         },
         {
@@ -251,7 +251,7 @@ export const CONTENT = {
           cta: "Jelajahi Street Food →",
           bg: "bg-[#f8f7f3]",
           text: "text-[#11140f]",
-          image: "/images/seasonal-ingredients.jpg",
+          image: "/images/kwetiau-babi-surabaya.png",
           dishId: "kwetiau-goreng-achai",
         },
       ],
@@ -452,7 +452,7 @@ export const CONTENT = {
           cta: "Explore Pork Roasts →",
           bg: "bg-[#c3b8eb]",
           text: "text-[#11140f]",
-          image: "/images/mediterranean-bowl.jpg",
+          image: "/images/samcan-crispy-pik.png",
           dishId: "kedai-samcan-emas-pik",
         },
         {
@@ -464,7 +464,7 @@ export const CONTENT = {
           cta: "Explore Noodle Dishes →",
           bg: "bg-[#BE132D]",
           text: "text-white",
-          image: "/images/crunchy-salad.jpg",
+          image: "/images/bakmi-babi-medan.png",
           dishId: "bakmi-khek-selat-panjang",
         },
         {
@@ -476,7 +476,7 @@ export const CONTENT = {
           cta: "Explore Street Food →",
           bg: "bg-[#f8f7f3]",
           text: "text-[#11140f]",
-          image: "/images/seasonal-ingredients.jpg",
+          image: "/images/kwetiau-babi-surabaya.png",
           dishId: "kwetiau-goreng-achai",
         },
       ],

@@ -21,19 +21,19 @@ export interface CardItem {
 export const HERO_CARDS_DATA = [
   {
     imageIndex: 0,
-    src: "/images/mediterranean-bowl.jpg",
+    src: "/images/samcan-crispy-pik.png",
     alt: "Samcan Crispy Panggang Khas Pontianak",
     title: "Samcan Crispy Emas PIK",
   },
   {
     imageIndex: 1,
-    src: "/images/greens-grilled.jpg",
+    src: "/images/babi-guling-sanur.png",
     alt: "Babi Guling Komplit Sanur Bali",
     title: "Babi Guling Karya Rejeki Bali",
   },
   {
     imageIndex: 2,
-    src: "/images/crunchy-salad.jpg",
+    src: "/images/bakmi-babi-medan.png",
     alt: "Bakmi Babi Khek Selat Panjang Medan",
     title: "Bakmi Babi Khek Medan",
   },
