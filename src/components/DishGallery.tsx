@@ -349,7 +349,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                   <div className="card2 dish-card2 p-3.5 flex flex-col justify-between overflow-hidden">
                     <div>
                       {/* Restaurant Photo */}
-                      <div className="relative w-full aspect-[4/3] rounded-[18px] md:rounded-[20px] overflow-hidden bg-neutral-900 mb-4">
+                      <div className="relative w-full aspect-4/3 rounded-[18px] md:rounded-[20px] overflow-hidden bg-neutral-900 mb-4">
                         <Image
                           src={dish.image}
                           alt={dish.name}
@@ -436,7 +436,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="py-16 px-6 text-center max-w-lg mx-auto bg-white/2 border border-white/10 rounded-[32px] space-y-4"
+            className="py-16 px-6 text-center max-w-lg mx-auto bg-white/2 border border-white/10 rounded-4xl space-y-4"
           >
             <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mx-auto text-[#BE132D]">
               <AlertCircle className="w-6 h-6" />

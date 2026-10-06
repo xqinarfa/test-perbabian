@@ -142,6 +142,14 @@ export default function Home() {
         {/* Marquee Ticker */}
         <MarqueeTicker text={t.ticker} />
 
+        {/* Dishes / Restaurant Gallery with Category Filters (Direktori) */}
+        <DishGallery
+          lang={lang}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          onOpenSubmitModal={() => scrollToSection("cta")}
+        />
+
         {/* Philosophy Section */}
         <PhilosophySection
           title={t.philosophy.title}
@@ -158,14 +166,6 @@ export default function Home() {
 
         {/* 3 Pathways Section */}
         <PathwaysSection lang={lang} onSelectDish={handleSelectDishById} />
-
-        {/* Dishes / Restaurant Gallery with Category Filters */}
-        <DishGallery
-          lang={lang}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          onOpenSubmitModal={() => scrollToSection("cta")}
-        />
 
         {/* 4 Step Process */}
         <FourStepsSection lang={lang} />
