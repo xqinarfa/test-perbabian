@@ -20,6 +20,7 @@ import { CtaBanner } from "@/components/CtaBanner";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { MagneticButton } from "@/components/MagneticButton";
+import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { FRAMER_EASE, FRAMER_TEXT_BLUR_IN } from "@/lib/animations";
 
 export default function Home() {
@@ -60,7 +61,7 @@ export default function Home() {
         {/* Hero Section */}
         <section
           id="inicio"
-          className="w-full pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-16 md:pb-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-[#0b0e0c] text-white relative overflow-hidden"
+          className="w-full pt-24 sm:pt-36 md:pt-44 pb-10 sm:pb-16 md:pb-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-[#0b0e0c] text-white relative overflow-hidden"
         >
           {/* Subtle Ambient Background synchronized with active Hero card */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
@@ -89,13 +90,13 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#0b0e0c]/70 via-transparent to-[#0b0e0c]" />
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
             {/* Left Column: Heading & Description */}
-            <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-center lg:text-left">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left">
               {/* Framer signature blur-in heading effect */}
               <motion.h1
                 {...FRAMER_TEXT_BLUR_IN}
-                className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.1] sm:leading-[1.08] tracking-tight"
+                className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.14] sm:leading-[1.08] tracking-tight"
               >
                 {t.hero.title}
               </motion.h1>
@@ -104,7 +105,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.58, delay: 0.1, ease: FRAMER_EASE }}
-                className="text-sm sm:text-base md:text-lg text-white/70 leading-relaxed font-sans max-w-xl mx-auto lg:mx-0"
+                className="text-xs sm:text-base md:text-lg text-white/70 leading-relaxed font-sans max-w-xl mx-auto lg:mx-0"
               >
                 {t.hero.description}
               </motion.p>
@@ -191,6 +192,9 @@ export default function Home() {
           lang={lang}
           onClose={() => setSelectedDish(null)}
         />
+
+        {/* Dynamic Responsive Floating WhatsApp Widget */}
+        <WhatsAppWidget lang={lang} />
       </main>
     </SmoothScroll>
   );
