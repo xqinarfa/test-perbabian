@@ -27,7 +27,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         duration: 1.0,
         smoothWheel: true,
         wheelMultiplier: 1.0,
-        touchMultiplier: 1.2,
+        touchMultiplier: 1.0,
+        syncTouch: true,
       }}
     >
       <LenisWatcher />

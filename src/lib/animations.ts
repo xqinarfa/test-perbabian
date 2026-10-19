@@ -70,7 +70,7 @@ export const FRAMER_TEXT_BLUR_IN = {
     opacity: 1,
     y: 0,
   },
-  viewport: { once: true, amount: 0.2 },
+  viewport: { once: true, amount: 0.05 },
   transition: {
     duration: 0.58,
     ease: FRAMER_EASE,
@@ -81,7 +81,7 @@ export const FRAMER_TEXT_BLUR_IN = {
 export const FRAMER_APPEAR = {
   initial: { opacity: 0, y: 26 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
+  viewport: { once: true, amount: 0.05 },
   transition: { duration: 0.58, ease: FRAMER_EASE },
 };
 
@@ -89,7 +89,7 @@ export const FRAMER_APPEAR = {
 export const createFramerStagger = (index: number, baseDelay = 0.06) => ({
   initial: { opacity: 0, y: 26 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
+  viewport: { once: true, amount: 0.05 },
   transition: {
     duration: 0.58,
     delay: index * baseDelay,
@@ -104,7 +104,7 @@ export const getPhilosophyCardEntrance = (index: number) => {
   return {
     initial: { opacity: 0, rotate: initialRotate, y: 60 },
     whileInView: { opacity: 1, rotate: targetRotate, y: 0 },
-    viewport: { once: true, amount: 0.2 },
+    viewport: { once: true, amount: 0.05 },
     transition: {
       duration: 0.62,
       delay: index * 0.08,
