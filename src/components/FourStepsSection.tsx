@@ -17,13 +17,13 @@ export const FourStepsSection: React.FC<FourStepsSectionProps> = ({ lang }) => {
   const t = CONTENT[lang].steps;
 
   return (
-    <section id="como-funciona" className="w-full bg-[#ebe8e1] text-[#11140f] py-16 sm:py-20 md:py-32 px-4 sm:px-8 md:px-12 lg:px-20 border-t border-black/5">
-      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+    <section id="como-funciona" className="w-full bg-[#ebe8e1] text-[#11140f] py-12 sm:py-20 md:py-28 px-4 sm:px-8 md:px-12 lg:px-20 border-t border-black/5">
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-12 md:space-y-16">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4">
+        <div className="text-center max-w-2xl mx-auto space-y-2 sm:space-y-4">
           <motion.h2
             {...FRAMER_TEXT_BLUR_IN}
-            className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium leading-[1.15] tracking-tight"
+            className="text-2xl sm:text-4xl md:text-5xl font-serif font-medium leading-[1.15] tracking-tight"
           >
             {t.title}
           </motion.h2>
@@ -31,22 +31,22 @@ export const FourStepsSection: React.FC<FourStepsSectionProps> = ({ lang }) => {
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.58, delay: 0.08, ease: FRAMER_EASE }}
-            className="text-sm sm:text-base text-[#11140f]/75 leading-relaxed font-sans"
+            className="text-xs sm:text-sm md:text-base text-[#11140f]/75 leading-relaxed font-sans"
           >
             {t.subtitle}
           </motion.p>
         </div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 md:gap-6">
           {t.items.map((item, idx) => (
             <motion.div
               key={item.num}
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.05 }}
               whileHover={{
                 y: -6,
                 boxShadow: "0px 18px 42px 0px rgba(0, 0, 0, 0.15)",
@@ -58,7 +58,7 @@ export const FourStepsSection: React.FC<FourStepsSectionProps> = ({ lang }) => {
                 delay: idx * 0.08,
                 ease: FRAMER_EASE,
               }}
-              className={`p-6 sm:p-7 md:p-8 rounded-[24px] sm:rounded-[28px] ${item.bg} ${item.text} shadow-lg border border-black/5 flex flex-col justify-between min-h-[250px] sm:min-h-[280px] md:min-h-[300px] will-change-transform cursor-default`}
+              className={`p-5 sm:p-7 md:p-8 rounded-[20px] sm:rounded-[28px] ${item.bg} ${item.text} shadow-lg border border-black/5 flex flex-col justify-between min-h-[220px] sm:min-h-[280px] md:min-h-[300px] will-change-transform cursor-default`}
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold tracking-[0.16em] uppercase opacity-75 font-sans">

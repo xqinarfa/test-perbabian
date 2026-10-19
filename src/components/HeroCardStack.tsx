@@ -106,10 +106,10 @@ export const HeroCardStack: React.FC<HeroCardStackProps> = ({ onActiveCardChange
     <div
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className="relative w-full max-w-[440px] h-[390px] sm:h-[450px] md:h-[510px] flex items-center justify-center select-none cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D] rounded-3xl"
+      className="relative w-full max-w-[440px] h-[310px] sm:h-[400px] md:h-[480px] flex flex-col items-center justify-center select-none cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D] rounded-3xl"
       aria-label="Interactive dish cards. Drag or press arrow keys to cycle."
     >
-      <div className="relative w-[260px] sm:w-[330px] md:w-[370px] h-[340px] sm:h-[410px] md:h-[470px]">
+      <div className="relative w-[230px] sm:w-[300px] md:w-[340px] h-[260px] sm:h-[340px] md:h-[400px]">
         {[...cards].reverse().map((card) => {
           const index = cards.findIndex((c) => c.id === card.id);
           const isFront = index === 0;
@@ -158,19 +158,19 @@ export const HeroCardStack: React.FC<HeroCardStackProps> = ({ onActiveCardChange
               }
               style={{
                 zIndex: 10 - index,
-                borderRadius: "26px",
-                boxShadow: "0px 22px 50px 0px rgba(11, 18, 14, 0.35)",
+                borderRadius: "22px",
+                boxShadow: "0px 18px 42px 0px rgba(11, 18, 14, 0.35)",
                 willChange: "transform, opacity",
               }}
-              className="absolute inset-0 overflow-hidden border border-white/20 bg-[#f4f2ec] p-3 md:p-3.5 flex flex-col items-center justify-between"
+              className="absolute inset-0 overflow-hidden border border-white/20 bg-[#f4f2ec] p-2.5 sm:p-3 md:p-3.5 flex flex-col items-center justify-between"
             >
               {/* Card Photo Container */}
-              <div className="relative w-full h-full rounded-[20px] md:rounded-[22px] overflow-hidden bg-neutral-900 pointer-events-none">
+              <div className="relative w-full h-full rounded-[18px] sm:rounded-[20px] md:rounded-[22px] overflow-hidden bg-neutral-900 pointer-events-none">
                 <Image
                   src={card.src}
                   alt={card.alt}
                   fill
-                  sizes="(max-width: 768px) 340px, 380px"
+                  sizes="(max-width: 640px) 240px, (max-width: 768px) 300px, 350px"
                   priority={index === 0}
                   className="object-cover"
                 />
@@ -178,6 +178,13 @@ export const HeroCardStack: React.FC<HeroCardStackProps> = ({ onActiveCardChange
             </motion.div>
           );
         })}
+      </div>
+
+      {/* Touch & Click Navigation Hint */}
+      <div className="pt-3 sm:pt-4 flex items-center gap-1.5 text-[11px] font-mono tracking-wider text-white/45 uppercase select-none pointer-events-none">
+        <span>↔</span>
+        <span className="hidden sm:inline">Geser atau klik untuk ganti kartu</span>
+        <span className="sm:hidden">Geser kartu ↔</span>
       </div>
     </div>
   );

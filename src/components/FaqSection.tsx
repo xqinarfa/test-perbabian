@@ -19,14 +19,14 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
   };
 
   return (
-    <section id="faq" className="w-full bg-[#ebe8e1] text-[#11140f] py-16 sm:py-20 md:py-32 px-4 sm:px-8 md:px-12 lg:px-20 border-t border-black/5">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+    <section id="faq" className="w-full bg-[#ebe8e1] text-[#11140f] py-12 sm:py-20 md:py-28 px-4 sm:px-8 md:px-12 lg:px-20 border-t border-black/5">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
         {/* Left Sticky Column */}
         <div className="lg:col-span-5 relative">
-          <div className="lg:sticky lg:top-28 xl:top-32 space-y-4 sm:space-y-6">
+          <div className="lg:sticky lg:top-28 xl:top-32 space-y-3 sm:space-y-6">
             <motion.h2
               {...FRAMER_TEXT_BLUR_IN}
-              className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium leading-[1.12] tracking-tight"
+              className="text-2xl sm:text-4xl md:text-5xl font-serif font-medium leading-[1.15] sm:leading-[1.12] tracking-tight"
             >
               {t.title}
             </motion.h2>
@@ -34,9 +34,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.05 }}
               transition={{ duration: 0.58, delay: 0.08, ease: FRAMER_EASE }}
-              className="text-base sm:text-lg text-[#11140f]/75 leading-relaxed font-sans max-w-md"
+              className="text-xs sm:text-sm md:text-base text-[#11140f]/75 leading-relaxed font-sans max-w-md"
             >
               {t.subtitle}
             </motion.p>
@@ -53,16 +53,16 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ lang }) => {
                 key={item.q}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.05 }}
                 transition={{ duration: 0.5, delay: idx * 0.06, ease: FRAMER_EASE }}
-                className="py-6 first:pt-0 last:pb-0"
+                className="py-4 sm:py-6 first:pt-0 last:pb-0"
               >
                 <button
                   onClick={() => toggleItem(idx)}
-                  className="w-full flex items-center justify-between text-left gap-4 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-lg"
+                  className="w-full min-h-[44px] flex items-center justify-between text-left gap-4 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-lg"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-lg sm:text-xl font-medium tracking-tight group-hover:opacity-75 transition-opacity">
+                  <span className="text-base sm:text-xl font-medium tracking-tight group-hover:opacity-75 transition-opacity">
                     {item.q}
                   </span>
                   <motion.div

@@ -85,7 +85,7 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 overscroll-contain"
+        className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6 md:p-8 overscroll-contain"
         data-lenis-prevent
         role="dialog"
         aria-modal="true"
@@ -104,19 +104,31 @@ export const DishModal: React.FC<DishModalProps> = ({ dish, lang, onClose }) => 
           aria-hidden="true"
         />
 
-        {/* Modal Window */}
+        {/* Modal Window / Mobile Bottom Sheet */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 16 }}
+          initial={{ opacity: 0, scale: 0.98, y: 32 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 16 }}
+          exit={{ opacity: 0, scale: 0.98, y: 32 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-2xl bg-[#131814] text-white border border-white/15 rounded-3xl sm:rounded-4xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] z-10 max-h-[92vh] sm:max-h-[88vh] flex flex-col overscroll-contain"
+          className="relative w-full max-w-2xl bg-[#131814] text-white border-t sm:border border-white/15 rounded-t-[28px] sm:rounded-4xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] z-10 max-h-[90vh] sm:max-h-[88vh] flex flex-col overscroll-contain"
           data-lenis-prevent
+          style={{
+            paddingBottom: "env(safe-area-inset-bottom, 0px)",
+          }}
         >
-          {/* Close Button */}
+          {/* Mobile Sheet Drag Indicator */}
+          <div
+            onClick={onClose}
+            className="sm:hidden w-full flex justify-center pt-3 pb-1 shrink-0 bg-[#131814] cursor-pointer"
+            aria-label="Tutup sheet"
+          >
+            <div className="w-12 h-1.5 rounded-full bg-white/25" />
+          </div>
+
+          {/* Close Button with 44px touch target */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/75 hover:bg-black border border-white/20 hover:border-white/40 flex items-center justify-center text-white transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D]"
+            className="absolute top-3.5 sm:top-4 right-3.5 sm:right-4 z-20 min-w-[44px] min-h-[44px] rounded-full bg-black/75 hover:bg-black border border-white/20 hover:border-white/40 flex items-center justify-center text-white transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BE132D]"
             aria-label={isEn ? "Close modal" : "Tutup modal"}
           >
             <X className="w-5 h-5" />

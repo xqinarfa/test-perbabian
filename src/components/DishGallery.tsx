@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
-import { Search, MapPin, Eye, AlertCircle, PlusCircle } from "lucide-react";
+import { Search, MapPin, Eye, AlertCircle, PlusCircle, ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Restaurant, RESTAURANTS, Language, CONTENT, NonHalalLevel } from "@/data/content";
 import {
@@ -34,6 +34,11 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
   const [selectedLevel, setSelectedLevel] = useState<string>("all");
   const [openNowOnly, setOpenNowOnly] = useState<boolean>(false);
   const [selectedDish, setSelectedDish] = useState<Restaurant | null>(null);
+  const [mobileFilterOpen, setMobileFilterOpen] = useState<boolean>(false);
+
+  // Pagination state
+  const ITEMS_PER_PAGE = 6;
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const t = CONTENT[lang].gallery;
 
@@ -108,12 +113,35 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
     });
   }, [selectedCity, selectedCategory, selectedLevel, openNowOnly, activeQuery]);
 
+  // Reset page when any filter or search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCity, selectedCategory, selectedLevel, openNowOnly, activeQuery]);
+
+  // Pagination derived state
+  const totalPages = Math.max(1, Math.ceil(filteredRestaurants.length / ITEMS_PER_PAGE));
+
+  const paginatedRestaurants = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredRestaurants.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredRestaurants, currentPage]);
+
+  const goToPage = (page: number) => {
+    const target = Math.max(1, Math.min(page, totalPages));
+    setCurrentPage(target);
+    const el = document.getElementById("cardapio");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const resetFilters = () => {
     setSelectedCity("all");
     setSelectedCategory("all");
     setSelectedLevel("all");
     setOpenNowOnly(false);
     setActiveQuery("");
+    setCurrentPage(1);
   };
 
   return (
@@ -174,8 +202,54 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
             )}
           </div>
 
-          {/* Filter Dropdowns & Controls */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 pt-1">
+          {/* Mobile Filter Action Bar */}
+          <div className="sm:hidden flex items-center gap-2 pt-1">
+            <button
+              type="button"
+              onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+              className={`flex-1 flex items-center justify-between min-h-[44px] px-4 py-2.5 rounded-xl border text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                selectedCity !== "all" || selectedLevel !== "all"
+                  ? "bg-[#BE132D]/20 border-[#BE132D] text-white"
+                  : "bg-black/40 border-white/10 text-white/80 hover:text-white"
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <SlidersHorizontal className="w-4 h-4 text-[#BE132D]" />
+                <span>
+                  {mobileFilterOpen ? "Tutup Filter Wilayah" : "Filter Kota & Bahan"}
+                </span>
+              </div>
+              {(selectedCity !== "all" || selectedLevel !== "all") && (
+                <span className="w-5 h-5 rounded-full bg-[#BE132D] text-white text-[11px] font-bold flex items-center justify-center">
+                  {(selectedCity !== "all" ? 1 : 0) + (selectedLevel !== "all" ? 1 : 0)}
+                </span>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setOpenNowOnly(!openNowOnly)}
+              className={`shrink-0 flex items-center gap-2 min-h-[44px] px-3.5 py-2.5 rounded-xl border text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                openNowOnly
+                  ? "bg-emerald-500/15 border-emerald-400 text-emerald-300"
+                  : "bg-black/40 border-white/10 text-white/70"
+              }`}
+            >
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  openNowOnly ? "bg-emerald-400 shadow-[0_0_6px_#34d399]" : "bg-white/40"
+                }`}
+              />
+              <span>Buka</span>
+            </button>
+          </div>
+
+          {/* Filter Dropdowns: Collapsible on Mobile, Grid Toolbar on Desktop */}
+          <div
+            className={`${
+              mobileFilterOpen ? "grid grid-cols-1 gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/10 mt-2" : "hidden"
+            } sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 sm:pt-1 sm:bg-transparent sm:border-0 sm:p-0 sm:mt-0`}
+          >
             {/* Dropdown 1: Provinsi / Kota */}
             <div className="space-y-1.5">
               <label className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white/60">
@@ -185,7 +259,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                 <select
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
-                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] sm:min-h-0 appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
                 >
                   {CITIES.map((c) => (
                     <option key={c.id} value={c.id} className="bg-[#11140f] text-white">
@@ -208,7 +282,7 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] sm:min-h-0 appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
                 >
                   {CATEGORIES.map((cat) => (
                     <option key={cat.id} value={cat.id} className="bg-[#11140f] text-white">
@@ -225,13 +299,13 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
             {/* Dropdown 3: Kategori Babi */}
             <div className="space-y-1.5">
               <label className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white/60">
-                Kategori Babi
+                Kategori Olahan / Lard
               </label>
               <div className="relative">
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
+                  className="w-full min-h-[44px] sm:min-h-0 appearance-none bg-black/40 border border-white/10 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs text-white focus:outline-none focus:border-[#BE132D]/60 transition-colors cursor-pointer"
                 >
                   {NON_HALAL_LEVELS.map((lvl) => (
                     <option key={lvl.id} value={lvl.id} className="bg-[#11140f] text-white">
@@ -245,12 +319,12 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
               </div>
             </div>
 
-            {/* Toggle: Buka Sekarang */}
-            <div className="space-y-1.5 flex flex-col justify-end">
+            {/* Toggle: Buka Sekarang (Desktop inline) */}
+            <div className="space-y-1.5 hidden sm:flex sm:flex-col sm:justify-end">
               <button
                 type="button"
                 onClick={() => setOpenNowOnly(!openNowOnly)}
-                className={`w-full flex items-center justify-between px-3.5 py-2 sm:py-2.5 rounded-xl border text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                className={`w-full min-h-[44px] sm:min-h-0 flex items-center justify-between px-3.5 py-2 sm:py-2.5 rounded-xl border text-xs font-semibold tracking-wider transition-all cursor-pointer ${
                   openNowOnly
                     ? "bg-emerald-500/15 border-emerald-400 text-emerald-300"
                     : "bg-black/40 border-white/10 text-white/70 hover:text-white"
@@ -301,37 +375,79 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
           })}
         </div>
 
-        {/* Results Counter & Active Filters Display */}
-        <div className="flex items-center justify-between text-xs text-white/50 pt-1">
-          <span>Menampilkan {filteredRestaurants.length} tempat makan olahan babi</span>
-          {(selectedCity !== "all" ||
-            selectedCategory !== "all" ||
-            selectedLevel !== "all" ||
-            openNowOnly ||
-            activeQuery) && (
-            <button
-              onClick={resetFilters}
-              className="text-[#BE132D] hover:underline cursor-pointer"
-            >
-              Reset semua filter
-            </button>
+        {/* Results Counter & Top Mini-Pagination */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-white/50 pt-1">
+          <div className="flex items-center gap-3">
+            <span>
+              Menampilkan {filteredRestaurants.length > 0 ? `${((currentPage - 1) * ITEMS_PER_PAGE) + 1}–${Math.min(currentPage * ITEMS_PER_PAGE, filteredRestaurants.length)} dari ${filteredRestaurants.length}` : "0"} tempat makan olahan babi
+            </span>
+            {(selectedCity !== "all" ||
+              selectedCategory !== "all" ||
+              selectedLevel !== "all" ||
+              openNowOnly ||
+              activeQuery) && (
+              <button
+                onClick={resetFilters}
+                className="text-[#BE132D] hover:underline cursor-pointer"
+              >
+                Reset filter
+              </button>
+            )}
+          </div>
+
+          {/* Mini Pagination di Atas Kanan */}
+          {totalPages > 1 && (
+            <div className="flex items-center self-end sm:self-auto gap-2.5 bg-white/4 border border-white/10 rounded-full px-3 py-1">
+              <span className="text-[11px] text-white/60">
+                Halaman <strong className="text-white font-semibold">{currentPage}</strong> dari {totalPages}
+              </span>
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  aria-label="Halaman sebelumnya"
+                  className={`p-1 rounded-md transition-all ${
+                    currentPage === 1
+                      ? "opacity-30 cursor-not-allowed text-white/30"
+                      : "hover:bg-white/10 text-white cursor-pointer active:scale-90"
+                  }`}
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  aria-label="Halaman selanjutnya"
+                  className={`p-1 rounded-md transition-all ${
+                    currentPage === totalPages
+                      ? "opacity-30 cursor-not-allowed text-white/30"
+                      : "hover:bg-white/10 text-white cursor-pointer active:scale-90"
+                  }`}
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
           )}
         </div>
 
         {/* Restaurant Cards Grid or Empty State */}
         {filteredRestaurants.length > 0 ? (
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7"
-          >
+          <>
+            <motion.div
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7"
+            >
             <AnimatePresence>
-              {filteredRestaurants.map((dish) => (
+              {paginatedRestaurants.map((dish) => (
                 <motion.div
                   key={dish.id}
                   layout
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: true, amount: 0.05 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   whileHover={{
                     y: -5,
@@ -431,7 +547,73 @@ export const DishGallery: React.FC<DishGalleryProps> = ({
               ))}
             </AnimatePresence>
           </motion.div>
-        ) : (
+
+          {/* Full Bottom Pagination */}
+          {totalPages > 1 && (
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/10">
+              <span className="text-xs text-white/50 order-2 sm:order-1">
+                Menampilkan {((currentPage - 1) * ITEMS_PER_PAGE) + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredRestaurants.length)} dari {filteredRestaurants.length} restoran
+              </span>
+
+              <nav aria-label="Navigasi halaman" className="flex items-center gap-2 order-1 sm:order-2">
+                {/* Tombol Sebelumnya */}
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  aria-label="Halaman sebelumnya"
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-white/10 transition-all ${
+                    currentPage === 1
+                      ? "opacity-30 cursor-not-allowed bg-white/5 text-white/40"
+                      : "bg-white/5 hover:bg-white/15 text-white cursor-pointer active:scale-95"
+                  }`}
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="hidden sm:inline">Sebelumnya</span>
+                </button>
+
+                {/* Nomor Halaman */}
+                <div className="flex items-center gap-1.5">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                    const isActive = currentPage === page;
+                    return (
+                      <button
+                        key={page}
+                        type="button"
+                        onClick={() => goToPage(page)}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`w-9 h-9 flex items-center justify-center rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          isActive
+                            ? "bg-[#BE132D] text-white shadow-lg shadow-[#BE132D]/35 scale-105"
+                            : "bg-white/5 hover:bg-white/15 text-white/75 hover:text-white border border-white/10 active:scale-95"
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Tombol Selanjutnya */}
+                <button
+                  type="button"
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  aria-label="Halaman selanjutnya"
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border border-white/10 transition-all ${
+                    currentPage === totalPages
+                      ? "opacity-30 cursor-not-allowed bg-white/5 text-white/40"
+                      : "bg-white/5 hover:bg-white/15 text-white cursor-pointer active:scale-95"
+                  }`}
+                >
+                  <span className="hidden sm:inline">Selanjutnya</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </nav>
+            </div>
+          )}
+        </>
+      ) : (
           /* Empty State from PRD */
           <motion.div
             initial={{ opacity: 0, y: 20 }}

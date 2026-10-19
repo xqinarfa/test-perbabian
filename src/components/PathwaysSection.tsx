@@ -25,20 +25,20 @@ export const PathwaysSection: React.FC<PathwaysSectionProps> = ({
   ];
 
   return (
-    <section id="experiencia" className="w-full bg-[#df6b51] text-[#11140f] py-16 sm:py-20 md:py-32 px-4 sm:px-8 md:px-12 lg:px-20 transition-colors">
-      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+    <section id="experiencia" className="w-full bg-[#df6b51] text-[#11140f] py-12 sm:py-20 md:py-28 px-4 sm:px-8 md:px-12 lg:px-20 transition-colors">
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-12 md:space-y-16">
         {/* Header Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 items-end">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.5, ease: FRAMER_EASE }}
-            className="lg:col-span-7 space-y-3 sm:space-y-4"
+            className="lg:col-span-7 space-y-2 sm:space-y-4"
           >
             <motion.h2
               {...FRAMER_TEXT_BLUR_IN}
-              className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium leading-[1.12] tracking-tight"
+              className="text-2xl sm:text-4xl md:text-5xl font-serif font-medium leading-[1.15] sm:leading-[1.12] tracking-tight"
             >
               {t.title}
             </motion.h2>
@@ -47,7 +47,7 @@ export const PathwaysSection: React.FC<PathwaysSectionProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ duration: 0.58, delay: 0.08, ease: FRAMER_EASE }}
             className="lg:col-span-5"
           >
@@ -57,43 +57,43 @@ export const PathwaysSection: React.FC<PathwaysSectionProps> = ({
           </motion.div>
         </div>
 
-        {/* 3 Large Pathway Cards - Sticky Stacking Deck */}
-        <div className="relative space-y-8 sm:space-y-10 md:space-y-16 pb-16 sm:pb-24 md:pb-36">
+        {/* 3 Large Pathway Cards - Sticky Stacking Deck on md+, Natural flow on mobile */}
+        <div className="relative space-y-6 sm:space-y-10 md:space-y-16 pb-8 sm:pb-24 md:pb-36">
           {t.cards.map((card, idx) => (
             <div
               key={card.num}
               style={{ zIndex: 10 + idx }}
-              className={`sticky ${stickyTops[idx] || "top-28"} w-full`}
+              className={`relative md:sticky ${stickyTops[idx] || "top-28"} w-full`}
             >
               <motion.div
                 initial={{ opacity: 0, y: 36 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.05 }}
                 whileHover={{
                   scale: 1.008,
                   boxShadow: "0px 28px 60px 0px rgba(0, 0, 0, 0.24)",
                   transition: { type: "spring", bounce: 0.16, duration: 0.35 },
                 }}
                 transition={{ duration: 0.62, delay: idx * 0.08, ease: FRAMER_EASE }}
-                className={`group rounded-[24px] sm:rounded-[28px] md:rounded-[36px] overflow-hidden ${card.bg} ${card.text} shadow-[0_16px_40px_rgba(0,0,0,0.18)] border border-black/10 grid grid-cols-1 lg:grid-cols-12 items-stretch will-change-transform cursor-pointer min-h-[380px] sm:min-h-[440px] lg:min-h-[480px]`}
+                className={`group rounded-[20px] sm:rounded-[28px] md:rounded-[36px] overflow-hidden ${card.bg} ${card.text} shadow-xl md:shadow-[0_16px_40px_rgba(0,0,0,0.18)] border border-black/10 grid grid-cols-1 lg:grid-cols-12 items-stretch will-change-transform cursor-pointer min-h-[340px] sm:min-h-[440px] lg:min-h-[480px]`}
                 onClick={() => onSelectDish(card.dishId)}
               >
                 {/* Left Content */}
-                <div className="lg:col-span-6 p-6 sm:p-8 md:p-12 flex flex-col justify-between space-y-6 sm:space-y-8">
+                <div className="lg:col-span-6 p-5 sm:p-8 md:p-12 flex flex-col justify-between space-y-4 sm:space-y-8">
                   <div>
-                    <span className="text-xs font-bold tracking-[0.2em] uppercase opacity-70 block mb-3 sm:mb-4">
+                    <span className="text-xs font-bold tracking-[0.2em] uppercase opacity-70 block mb-2 sm:mb-4">
                       {card.num}
                     </span>
-                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-medium tracking-tight mb-3 sm:mb-4">
+                    <h3 className="text-xl sm:text-3xl md:text-5xl font-serif font-medium tracking-tight mb-2 sm:mb-4">
                       {card.title}
                     </h3>
-                    <p className="text-sm sm:text-base opacity-85 leading-relaxed font-sans max-w-md">
+                    <p className="text-xs sm:text-sm md:text-base opacity-85 leading-relaxed font-sans max-w-md">
                       {card.description}
                     </p>
                   </div>
 
-                  <div className="space-y-3 sm:space-y-4 pt-4 border-t border-black/10">
-                    <p className="text-xs font-bold tracking-[0.14em] uppercase opacity-75">
+                  <div className="space-y-2 sm:space-y-4 pt-3 sm:pt-4 border-t border-black/10">
+                    <p className="text-[11px] sm:text-xs font-bold tracking-[0.14em] uppercase opacity-75">
                       {card.subtitle}
                     </p>
                     <motion.button
@@ -102,7 +102,7 @@ export const PathwaysSection: React.FC<PathwaysSectionProps> = ({
                         e.stopPropagation();
                         onSelectDish(card.dishId);
                       }}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold tracking-[0.14em] uppercase hover:underline cursor-pointer group"
+                      className="inline-flex items-center min-h-[44px] gap-1.5 text-xs sm:text-sm font-bold tracking-[0.14em] uppercase hover:underline cursor-pointer group"
                     >
                       <span>{card.cta}</span>
                     </motion.button>

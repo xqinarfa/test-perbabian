@@ -14,13 +14,13 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ lang, onExploreClick }) =>
   const t = CONTENT[lang].cta;
 
   return (
-    <section id="cta" className="w-full bg-[#BE132D] text-white py-16 sm:py-24 md:py-32 px-4 sm:px-8 md:px-12 lg:px-20 text-center relative overflow-hidden">
-      <div className="max-w-4xl mx-auto space-y-5 sm:space-y-6 relative z-10">
-        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.1] sm:leading-[1.08] tracking-tight">
+    <section id="cta" className="w-full bg-[#BE132D] text-white py-12 sm:py-20 md:py-28 px-4 sm:px-8 md:px-12 lg:px-20 text-center relative overflow-hidden">
+      <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 relative z-10">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-medium leading-[1.14] sm:leading-[1.08] tracking-tight">
           {t.title}
         </h2>
 
-        <p className="text-sm sm:text-base md:text-lg text-white/85 leading-relaxed font-sans max-w-xl mx-auto">
+        <p className="text-xs sm:text-base md:text-lg text-white/85 leading-relaxed font-sans max-w-xl mx-auto">
           {t.subtitle}
         </p>
 
