@@ -1,0 +1,96 @@
+import { Province, City } from '../types/resto';
+
+export const PROVINCES: Province[] = [
+  { kode: '11', nama: 'Aceh', slug: 'aceh' },
+  { kode: '12', nama: 'Sumatera Utara', slug: 'sumatera-utara' },
+  { kode: '13', nama: 'Sumatera Barat', slug: 'sumatera-barat' },
+  { kode: '14', nama: 'Riau', slug: 'riau' },
+  { kode: '15', nama: 'Jambi', slug: 'jambi' },
+  { kode: '16', nama: 'Sumatera Selatan', slug: 'sumatera-selatan' },
+  { kode: '17', nama: 'Bengkulu', slug: 'bengkulu' },
+  { kode: '18', nama: 'Lampung', slug: 'lampung' },
+  { kode: '19', nama: 'Kepulauan Bangka Belitung', slug: 'kepulauan-bangka-belitung' },
+  { kode: '21', nama: 'Kepulauan Riau', slug: 'kepulauan-riau' },
+  { kode: '31', nama: 'Daerah Khusus Ibukota Jakarta', slug: 'daerah-khusus-ibukota-jakarta' },
+  { kode: '32', nama: 'Jawa Barat', slug: 'jawa-barat' },
+  { kode: '33', nama: 'Jawa Tengah', slug: 'jawa-tengah' },
+  { kode: '34', nama: 'Daerah Istimewa Yogyakarta', slug: 'daerah-istimewa-yogyakarta' },
+  { kode: '35', nama: 'Jawa Timur', slug: 'jawa-timur' },
+  { kode: '36', nama: 'Banten', slug: 'banten' },
+  { kode: '51', nama: 'Bali', slug: 'bali' },
+  { kode: '52', nama: 'Nusa Tenggara Barat', slug: 'nusa-tenggara-barat' },
+  { kode: '53', nama: 'Nusa Tenggara Timur', slug: 'nusa-tenggara-timur' },
+  { kode: '61', nama: 'Kalimantan Barat', slug: 'kalimantan-barat' },
+  { kode: '62', nama: 'Kalimantan Tengah', slug: 'kalimantan-tengah' },
+  { kode: '63', nama: 'Kalimantan Selatan', slug: 'kalimantan-selatan' },
+  { kode: '64', nama: 'Kalimantan Timur', slug: 'kalimantan-timur' },
+  { kode: '65', nama: 'Kalimantan Utara', slug: 'kalimantan-utara' },
+  { kode: '71', nama: 'Sulawesi Utara', slug: 'sulawesi-utara' },
+  { kode: '72', nama: 'Sulawesi Tengah', slug: 'sulawesi-tengah' },
+  { kode: '73', nama: 'Sulawesi Selatan', slug: 'sulawesi-selatan' },
+  { kode: '74', nama: 'Sulawesi Tenggara', slug: 'sulawesi-tenggara' },
+  { kode: '75', nama: 'Gorontalo', slug: 'gorontalo' },
+  { kode: '76', nama: 'Sulawesi Barat', slug: 'sulawesi-barat' },
+  { kode: '81', nama: 'Maluku', slug: 'maluku' },
+  { kode: '82', nama: 'Maluku Utara', slug: 'maluku-utara' },
+  { kode: '91', nama: 'Papua', slug: 'papua' },
+  { kode: '92', nama: 'Papua Barat', slug: 'papua-barat' },
+  { kode: '93', nama: 'Papua Selatan', slug: 'papua-selatan' },
+  { kode: '94', nama: 'Papua Tengah', slug: 'papua-tengah' },
+  { kode: '95', nama: 'Papua Pegunungan', slug: 'papua-pegunungan' },
+  { kode: '96', nama: 'Papua Barat Daya', slug: 'papua-barat-daya' },
+];
+
+export const CITIES_BY_PROVINCE: Record<string, City[]> = {
+  '31': [
+    { kode: '3173', kodeProvinsi: '31', nama: 'Kota Administrasi Jakarta Barat', namaPendek: 'Jakarta Barat', slug: 'jakarta-barat' },
+    { kode: '3171', kodeProvinsi: '31', nama: 'Kota Administrasi Jakarta Pusat', namaPendek: 'Jakarta Pusat', slug: 'jakarta-pusat' },
+    { kode: '3174', kodeProvinsi: '31', nama: 'Kota Administrasi Jakarta Selatan', namaPendek: 'Jakarta Selatan', slug: 'jakarta-selatan' },
+    { kode: '3175', kodeProvinsi: '31', nama: 'Kota Administrasi Jakarta Timur', namaPendek: 'Jakarta Timur', slug: 'jakarta-timur' },
+    { kode: '3172', kodeProvinsi: '31', nama: 'Kota Administrasi Jakarta Utara', namaPendek: 'Jakarta Utara', slug: 'jakarta-utara' },
+  ],
+  '12': [
+    { kode: '1271', kodeProvinsi: '12', nama: 'Kota Medan', namaPendek: 'Medan', slug: 'medan' },
+    { kode: '1272', kodeProvinsi: '12', nama: 'Kota Pematangsiantar', namaPendek: 'Pematangsiantar', slug: 'pematangsiantar' },
+    { kode: '1206', kodeProvinsi: '12', nama: 'Kabupaten Karo', namaPendek: 'Karo / Berastagi', slug: 'karo' },
+    { kode: '1211', kodeProvinsi: '12', nama: 'Kabupaten Dairi', namaPendek: 'Dairi / Sidikalang', slug: 'dairi' },
+  ],
+  '51': [
+    { kode: '5171', kodeProvinsi: '51', nama: 'Kota Denpasar', namaPendek: 'Denpasar', slug: 'denpasar' },
+    { kode: '5103', kodeProvinsi: '51', nama: 'Kabupaten Badung', namaPendek: 'Badung / Kuta', slug: 'badung' },
+    { kode: '5104', kodeProvinsi: '51', nama: 'Kabupaten Gianyar', namaPendek: 'Gianyar / Ubud', slug: 'gianyar' },
+    { kode: '5102', kodeProvinsi: '51', nama: 'Kabupaten Tabanan', namaPendek: 'Tabanan', slug: 'tabanan' },
+  ],
+  '71': [
+    { kode: '7171', kodeProvinsi: '71', nama: 'Kota Manado', namaPendek: 'Manado', slug: 'manado' },
+    { kode: '7173', kodeProvinsi: '71', nama: 'Kota Tomohon', namaPendek: 'Tomohon', slug: 'tomohon' },
+    { kode: '7102', kodeProvinsi: '71', nama: 'Kabupaten Minahasa', namaPendek: 'Minahasa', slug: 'minahasa' },
+  ],
+  '19': [
+    { kode: '1971', kodeProvinsi: '19', nama: 'Kota Pangkal Pinang', namaPendek: 'Pangkal Pinang', slug: 'pangkal-pinang' },
+    { kode: '1901', kodeProvinsi: '19', nama: 'Kabupaten Bangka', namaPendek: 'Sungailiat / Bangka', slug: 'bangka' },
+  ],
+  '53': [
+    { kode: '5371', kodeProvinsi: '53', nama: 'Kota Kupang', namaPendek: 'Kupang', slug: 'kupang' },
+  ],
+  '61': [
+    { kode: '6171', kodeProvinsi: '61', nama: 'Kota Pontianak', namaPendek: 'Pontianak', slug: 'pontianak' },
+    { kode: '6172', kodeProvinsi: '61', nama: 'Kota Singkawang', namaPendek: 'Singkawang', slug: 'singkawang' },
+  ],
+  '32': [
+    { kode: '3275', kodeProvinsi: '32', nama: 'Kota Bekasi', namaPendek: 'Bekasi', slug: 'bekasi' },
+    { kode: '3273', kodeProvinsi: '32', nama: 'Kota Bandung', namaPendek: 'Bandung', slug: 'bandung' },
+    { kode: '3271', kodeProvinsi: '32', nama: 'Kota Bogor', namaPendek: 'Bogor', slug: 'bogor' },
+  ],
+};
+
+export const POPULAR_CITIES: City[] = [
+  { kode: '3173', kodeProvinsi: '31', nama: 'Jakarta Barat', namaPendek: 'Jakarta Barat', slug: 'jakarta-barat', count: 12 },
+  { kode: '1271', kodeProvinsi: '12', nama: 'Medan', namaPendek: 'Medan', slug: 'medan', count: 18 },
+  { kode: '5171', kodeProvinsi: '51', nama: 'Denpasar', namaPendek: 'Denpasar', slug: 'denpasar', count: 24 },
+  { kode: '7171', kodeProvinsi: '71', nama: 'Manado', namaPendek: 'Manado', slug: 'manado', count: 15 },
+  { kode: '1971', kodeProvinsi: '19', nama: 'Pangkal Pinang', namaPendek: 'Pangkal Pinang', slug: 'pangkal-pinang', count: 9 },
+  { kode: '5371', kodeProvinsi: '53', nama: 'Kupang', namaPendek: 'Kupang', slug: 'kupang', count: 8 },
+  { kode: '6171', kodeProvinsi: '61', nama: 'Pontianak', namaPendek: 'Pontianak', slug: 'pontianak', count: 11 },
+  { kode: '3275', kodeProvinsi: '32', nama: 'Bekasi', namaPendek: 'Bekasi', slug: 'bekasi', count: 7 },
+];
